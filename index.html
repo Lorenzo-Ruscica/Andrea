@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANDREA RISUCCHIO: IL DISAGIO</title>
+    <style>
+        /* CSS SCRITTO CON I PIEDI (VOLUTAMENTE) */
+        body {
+            background-color: #FFFF00; /* Giallo Fluo Epilettico */
+            font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
+            color: #4b0082; /* Indaco fastidioso */
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            border: 20px solid #FF0000; /* Bordo rosso tamarro */
+        }
+
+        h1 {
+            font-family: 'Impact', sans-serif;
+            font-size: 4rem;
+            color: #FF0000;
+            text-shadow: 3px 3px 0px #000000;
+            margin-bottom: 0;
+            animation: blink 1s infinite;
+        }
+
+        h2 {
+            background-color: #00FF00; /* Verde Matrix dei poveri */
+            display: inline-block;
+            padding: 10px;
+            border: 3px dashed black;
+            transform: rotate(-2deg);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border: 5px solid blue;
+            padding: 20px;
+            box-shadow: 10px 10px 0px #000000;
+        }
+
+        /* STILI PER LE LISTE E CHECKBOX */
+        .section-box {
+            margin-bottom: 30px;
+            border-bottom: 4px dotted #ff00ff;
+            padding-bottom: 20px;
+        }
+
+        ul, ol {
+            text-align: left;
+            font-size: 1.2rem;
+            list-style-position: inside;
+        }
+
+        li {
+            margin-bottom: 10px;
+            background: #e0e0e0;
+            padding: 5px;
+            border: 1px solid black;
+        }
+
+        /* Checkbox giganti per dita grasse */
+        input[type="checkbox"] {
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        /* TIMELINE DELLO SFIGATO */
+        .timeline {
+            border-left: 6px solid #ff00ff;
+            margin-left: 20px;
+            padding-left: 20px;
+            text-align: left;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            background: #000;
+            color: #fff;
+            padding: 2px 5px;
+            display: inline-block;
+        }
+
+        /* BARRA DEL DISAGIO */
+        #disagio-meter {
+            position: sticky;
+            bottom: 20px;
+            background: #000;
+            padding: 10px;
+            border: 5px solid #FFD700;
+            z-index: 100;
+        }
+
+        #progress-container {
+            width: 100%;
+            background-color: #555;
+            height: 40px;
+            border: 2px solid white;
+        }
+
+        #progress-bar {
+            width: 0%;
+            height: 100%;
+            background-color: #ff0000; /* Rosso pericolo */
+            text-align: center;
+            line-height: 40px;
+            color: white;
+            font-weight: bold;
+            font-family: monospace;
+            transition: width 0.3s ease-in-out;
+        }
+
+        /* IL PREMIO FINALE */
+        #final-prize {
+            display: none; /* Nascosto finché non è al 100% */
+            margin-top: 20px;
+            padding: 20px;
+            border: 5px double white;
+            font-size: 2rem;
+            font-weight: bold;
+            animation: rainbow 2s infinite;
+        }
+
+        /* ANIMAZIONI DA MAL DI MARE */
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes rainbow {
+            0% { background-color: red; color: yellow; }
+            20% { background-color: yellow; color: blue; }
+            40% { background-color: blue; color: red; }
+            60% { background-color: green; color: white; }
+            80% { background-color: orange; color: black; }
+            100% { background-color: red; color: yellow; }
+        }
+
+        .marquee-style {
+            background-color: blue;
+            color: white;
+            font-weight: bold;
+            padding: 5px;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="marquee-style">
+        <marquee scrollamount="15">🚨 ATTENZIONE: LIVELLI DI CRINGE CRITICI RILEVATI - NON DARE DA MANGIARE AL SOGGETTO DOPO MEZZANOTTE 🚨</marquee>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>ANDREA RISUCCHIO</h1>
+            <h2>IL SITO UFFICIALE DEL DISAGIO</h2>
+            <p style="font-size: 1.5rem;">~ Cronache di una vita spesa male ~</p>
+            <img src="IMG-20231013-WA0012.jpg" alt="Foto Imbarazzante" style="border: 5px ridge grey;" width="100px" height="100px">
+            <p><i>Webmaster: I Suoi (Ex) Amici</i></p>
+        </header>
+
+        <hr style="border: 2px solid black;">
+
+        <section class="section-box">
+            <h3>🏆 TOP 5 COSE DA 'RIMASTO'</h3>
+            <p>Seleziona le caselle se Andrea ha fatto queste cose (sappiamo che le ha fatte).</p>
+            <ol>
+                <li><label><input type="checkbox" class="disagio-check">Usare gli skinny nel big 2025</label></li>
+                <li><label><input type="checkbox" class="disagio-check">Ascoltare e sapere a memoria tutte le canzoni di tha supreme</label></li>
+                <li><label><input type="checkbox" class="disagio-check">Soffrire della chiamarberg</label></li>
+                <li><label><input type="checkbox" class="disagio-check">Le NOTE di su instragram</label></li>
+                <li><label><input type="checkbox" class="disagio-check">Negare il fatto di essere gay</label></li>
+            </ol>
+        </section>
+
+        <section class="section-box">
+            <h3>📉 CRONOLOGIA DELLO SFIGATO</h3>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="timeline-date">Capodanno 2024</span>
+                    <br>
+                    <label><input type="checkbox" class="disagio-check"> Basta voglio suicidarmi le 2010 non mi vogliono</label>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">Valencia 2025</span>
+                    <br>
+                    <label><input type="checkbox" class="disagio-check">Basta!! adesso vado a sfondarmi di alcol da solo in disco</label>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">Discord</span>
+                    <br>
+                    <label><input type="checkbox" class="disagio-check">Mi hanno espluso troppe volte adesso non entro per 10 secondi per farmi desiderare</label>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">Lia</span>
+                    <br>
+                    <label><input type="checkbox" class="disagio-check">Che palle!!! tutti voglio quella figa di mia sorella</label>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-box">
+            <h3>Le frasi da gay </h3>
+            <p>Frasi dette realmente (purtroppo).</p>
+            <ul>
+                <li><label><input type="checkbox" class="disagio-check"> "Hai un bel sorriso"</label></li>
+                <li><label><input type="checkbox" class="disagio-check"> "Se Ale non viene non ci sono manco io".</label></li>
+                <li><label><input type="checkbox" class="disagio-check"> "Non è gay se ci tocchiamo solo i gomiti."</label></li>
+                <li><label><input type="checkbox" class="disagio-check"> "Andiamo in bagno insieme così risparmiamo tempo?"</label></li>
+                <li><label><input type="checkbox" class="disagio-check"> "Bel cazzo"</label></li>
+            </ul>
+        </section>
+    </div>
+
+    <div id="disagio-meter">
+        <label style="color: yellow; font-family: Impact; font-size: 1.5rem;">⚠️ LIVELLO DI DISAGIO TOTALE ⚠️</label>
+        <div id="progress-container">
+            <div id="progress-bar">0%</div>
+        </div>
+        
+        <div id="final-prize"></div>
+    </div>
+
+    <script>
+        // SCRIPT JS: LA LOGICA DEL MALE
+        document.addEventListener("DOMContentLoaded", () => {
+            const checkboxes = document.querySelectorAll('.disagio-check');
+            const progressBar = document.getElementById('progress-bar');
+            const prizeContainer = document.getElementById('final-prize');
+            
+            // Calcolo quanto vale ogni singola checkbox
+            const totalItems = checkboxes.length;
+            const pointsPerItem = 100 / totalItems;
+
+            function updateDisagio() {
+                // Conta quante sono checkate
+                let checkedCount = 0;
+                checkboxes.forEach(box => {
+                    if(box.checked) checkedCount++;
+                });
+
+                // Calcola percentuale
+                let percentage = Math.round(checkedCount * pointsPerItem);
+                
+                // Evitiamo decimali brutti e cap a 100
+                if (percentage > 100) percentage = 100;
+
+                // Aggiorna la barra
+                progressBar.style.width = percentage + "%";
+                progressBar.innerText = percentage + "% DISAGIO";
+
+                // Cambia colore barra in base alla gravità
+                if(percentage < 50) {
+                    progressBar.style.backgroundColor = "#ff0000"; // Rosso base
+                } else if (percentage < 90) {
+                    progressBar.style.backgroundColor = "#ff6600"; // Arancione allerta
+                } else {
+                    progressBar.style.backgroundColor = "#8B0000"; // Rosso sangue scuro
+                }
+
+                // CONTROLLO FINALE (LOGICA DATA)
+                if (percentage >= 99) { // Tolleranza arrotondamento
+                    checkDateAndAwardPrize();
+                } else {
+                    prizeContainer.style.display = "none";
+                }
+            }
+
+            function checkDateAndAwardPrize() {
+                const today = new Date();
+                const currentYear = today.getFullYear();
+                
+                // Imposta la scadenza al 31 Dicembre
+                const deadline = new Date(currentYear, 11, 31, 23, 59, 59);
+
+                prizeContainer.style.display = "block";
+                prizeContainer.innerHTML = "";
+
+                if (today <= deadline) {
+                    // SE È ANCORA IN TEMPO:
+                    // Genera il bottone che punta direttamente al file nella cartella
+                    prizeContainer.innerHTML = `
+                        🎉 PREMIO SBLOCCATO! 🎉<br>
+                        <span style="font-size: 1rem;">Hai vinto un:</span><br>
+                        <strong>CORSO DI RECUPERO DELLA DIGNITÀ</strong><br>
+                        <br>
+                        <a href="certificato_andrea.pdf" download="Certificato_Dignita_Andrea.pdf" style="text-decoration:none;">
+                            <button style="
+                                font-size: 1.5rem; 
+                                cursor: pointer; 
+                                background: #00FF00; 
+                                border: 5px outset #005500; 
+                                font-family: Impact; 
+                                padding: 15px; 
+                                color: black;
+                                text-transform: uppercase;
+                                animation: blink 2s infinite;">
+                                📥 SCARICA IL CERTIFICATO
+                            </button>
+                        </a>
+                        <br><br>
+                        <span style="font-size: 0.8rem;">(Stampalo e appenditelo in camera)</span>
+                    `;
+                } else {
+                    // SE È TROPPO TARDI:
+                    prizeContainer.innerHTML = `
+                        💀 GAME OVER 💀<br>
+                        Troppo tardi, Andrea.<br>
+                        Il file è stato cancellato dall'internet.<br>
+                        <span style="font-size: 1rem;">(Riprova l'anno prossimo, sfigato)</span>
+                    `;
+                    prizeContainer.style.backgroundColor = "black";
+                    prizeContainer.style.color = "red";
+                    prizeContainer.style.border = "5px solid red";
+                }
+            }
+            // Aggiungi listener a tutte le checkbox
+            checkboxes.forEach(box => {
+                box.addEventListener('change', updateDisagio);
+            });
+        });
+    </script>
+</body>
+</html>
