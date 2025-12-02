@@ -155,6 +155,78 @@
             padding: 5px;
             font-family: monospace;
         }
+
+        /* =========================================
+           VERSIONE MOBILE (RESPONSIVE TRASH)
+           Si attiva solo se lo schermo è piccolo (< 768px)
+           ========================================= */
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 5px; /* Meno spazio ai lati */
+                border: 5px solid red; /* Bordo più sottile */
+            }
+
+            .container {
+                width: 95%; /* Occupa tutto lo schermo */
+                border: 2px solid blue;
+                padding: 10px;
+                box-shadow: none; /* Togliamo l'ombra pesante */
+            }
+
+            h1 {
+                font-size: 2.5rem; /* Titolo più piccolo sennò esplode */
+                line-height: 1;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+                transform: rotate(0deg); /* Drizziamo il sottotitolo */
+            }
+
+            /* Bottoni e Checkbox enormi per dita grasse */
+            input[type="checkbox"] {
+                width: 35px;
+                height: 35px;
+                margin-right: 15px;
+            }
+
+            li {
+                font-size: 1rem;
+                padding: 10px;
+                display: flex; /* Allinea checkbox e testo */
+                align-items: center;
+                text-align: left;
+            }
+
+            /* Adattiamo la timeline */
+            .timeline {
+                margin-left: 5px;
+                padding-left: 15px;
+            }
+
+            /* Barra del disagio fissa in basso */
+            #disagio-meter {
+                padding: 5px;
+                bottom: 0;
+                border-width: 2px;
+            }
+
+            #progress-bar {
+                font-size: 0.8rem; /* Testo più piccolo */
+            }
+
+            /* Adattiamo il bottone del download */
+            #final-prize button {
+                width: 100%; /* Bottone a tutta larghezza */
+                font-size: 1.2rem !important;
+                white-space: normal; /* Permette al testo di andare a capo */
+            }
+            
+            /* Nascondiamo cose inutili su mobile se vuoi */
+            .marquee-style {
+                font-size: 0.8rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -334,4 +406,5 @@
         });
     </script>
 </body>
+
 </html>
