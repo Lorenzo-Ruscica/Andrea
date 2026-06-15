@@ -3,17 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANDREA RISUCCHIO: IL DISAGIO</title>
+    <title>ANDREA RISUCCHIO: IL DISAGIO SUPREMO v2.0</title>
+    <meta name="description" content="Il sito ufficiale del disagio. Dedicato ad Andrea Risucchio e alle sue gesta leggendarie.">
     <style>
-        /* CSS SCRITTO CON I PIEDI (VOLUTAMENTE) */
+        /* === RESET & BASE === */
+        * { box-sizing: border-box; }
+
         body {
-            background-color: #FFFF00; /* Giallo Fluo Epilettico */
+            background-color: #FFFF00;
             font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif;
-            color: #4b0082; /* Indaco fastidioso */
+            color: #4b0082;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             text-align: center;
-            border: 20px solid #FF0000; /* Bordo rosso tamarro */
+            border: 20px solid #FF0000;
+            min-height: 100vh;
         }
 
         h1 {
@@ -21,28 +25,107 @@
             font-size: 4rem;
             color: #FF0000;
             text-shadow: 3px 3px 0px #000000;
-            margin-bottom: 0;
+            margin: 10px 0 0;
             animation: blink 1s infinite;
         }
 
         h2 {
-            background-color: #00FF00; /* Verde Matrix dei poveri */
+            background-color: #00FF00;
             display: inline-block;
             padding: 10px;
             border: 3px dashed black;
             transform: rotate(-2deg);
         }
 
+        h3 {
+            background: #4b0082;
+            color: #FFD700;
+            display: inline-block;
+            padding: 8px 20px;
+            border: 3px solid black;
+            font-family: 'Impact', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 1px;
+        }
+
         .container {
-            max-width: 800px;
+            max-width: 950px;
             margin: 0 auto;
             background-color: #ffffff;
             border: 5px solid blue;
             padding: 20px;
             box-shadow: 10px 10px 0px #000000;
+            margin-bottom: 110px;
         }
 
-        /* STILI PER LE LISTE E CHECKBOX */
+        /* === MARQUEES === */
+        .marquee-style {
+            background-color: blue;
+            color: white;
+            font-weight: bold;
+            padding: 5px;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        /* === TOP BAR === */
+        #top-bar {
+            background: #000;
+            color: white;
+            padding: 8px 15px;
+            font-family: monospace;
+            font-size: 0.85rem;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        #hit-counter {
+            background: #000;
+            color: #00ff00;
+            font-family: monospace;
+            font-size: 1rem;
+            border: 2px inset #005500;
+            padding: 1px 8px;
+            display: inline-block;
+        }
+
+        /* === TAB NAVIGATION === */
+        .tab-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            padding: 8px;
+            background: #1a1a1a;
+            justify-content: center;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            border-bottom: 4px solid #FFD700;
+        }
+
+        .tab-btn {
+            background: #cc0000;
+            color: white;
+            border: 2px solid #FFD700;
+            padding: 7px 13px;
+            cursor: pointer;
+            font-family: 'Comic Sans MS', sans-serif;
+            font-size: 0.82rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.15s;
+            white-space: nowrap;
+        }
+
+        .tab-btn:hover { background: #FFD700; color: black; transform: rotate(-2deg) scale(1.05); }
+        .tab-btn.active { background: #FFD700; color: black; transform: scale(1.08); }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* === SECTION BOX === */
         .section-box {
             margin-bottom: 30px;
             border-bottom: 4px dotted #ff00ff;
@@ -51,27 +134,27 @@
 
         ul, ol {
             text-align: left;
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             list-style-position: inside;
+            padding: 0 10px;
         }
 
         li {
             margin-bottom: 10px;
             background: #e0e0e0;
-            padding: 5px;
+            padding: 7px;
             border: 1px solid black;
         }
 
-        /* Checkbox giganti per dita grasse */
         input[type="checkbox"] {
-            width: 25px;
-            height: 25px;
+            width: 22px;
+            height: 22px;
             cursor: pointer;
             vertical-align: middle;
-            margin-right: 10px;
+            margin-right: 8px;
         }
 
-        /* TIMELINE DELLO SFIGATO */
+        /* === TIMELINE === */
         .timeline {
             border-left: 6px solid #ff00ff;
             margin-left: 20px;
@@ -79,332 +162,2151 @@
             text-align: left;
         }
 
-        .timeline-item {
-            position: relative;
-            margin-bottom: 20px;
-        }
+        .timeline-item { position: relative; margin-bottom: 20px; }
 
         .timeline-date {
             font-weight: bold;
             background: #000;
             color: #fff;
-            padding: 2px 5px;
+            padding: 2px 6px;
             display: inline-block;
         }
 
-        /* BARRA DEL DISAGIO */
+        /* === DISAGIO METER === */
         #disagio-meter {
             position: sticky;
-            bottom: 20px;
+            bottom: 0;
             background: #000;
-            padding: 10px;
-            border: 5px solid #FFD700;
+            padding: 8px 15px;
+            border-top: 5px solid #FFD700;
             z-index: 100;
         }
 
         #progress-container {
             width: 100%;
             background-color: #555;
-            height: 40px;
+            height: 38px;
             border: 2px solid white;
         }
 
         #progress-bar {
             width: 0%;
             height: 100%;
-            background-color: #ff0000; /* Rosso pericolo */
+            background-color: #ff0000;
             text-align: center;
-            line-height: 40px;
+            line-height: 38px;
             color: white;
             font-weight: bold;
             font-family: monospace;
+            font-size: 1rem;
             transition: width 0.3s ease-in-out;
         }
 
-        /* IL PREMIO FINALE */
         #final-prize {
-            display: none; /* Nascosto finché non è al 100% */
-            margin-top: 20px;
-            padding: 20px;
+            display: none;
+            margin-top: 10px;
+            padding: 15px;
             border: 5px double white;
-            font-size: 2rem;
+            font-size: 1.6rem;
             font-weight: bold;
             animation: rainbow 2s infinite;
         }
 
-        /* ANIMAZIONI DA MAL DI MARE */
+        /* === BUTTONS === */
+        .btn-trash {
+            background: #cc0000;
+            color: white;
+            border: 3px outset #880000;
+            padding: 9px 18px;
+            font-family: 'Comic Sans MS', sans-serif;
+            font-size: 0.95rem;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin: 4px;
+            transition: background 0.1s;
+        }
+
+        .btn-trash:hover { background: #FFD700; color: black; }
+        .btn-trash:active { border-style: inset; }
+        .btn-trash:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* === OROSCOPO === */
+        #oroscopo-result {
+            background: #000;
+            color: #0f0;
+            font-family: monospace;
+            font-size: 1.05rem;
+            padding: 20px;
+            border: 4px solid #0f0;
+            margin-top: 20px;
+            text-align: left;
+            line-height: 1.7;
+            display: none;
+        }
+
+        .segno-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin: 15px 0;
+        }
+
+        .segno-btn {
+            background: #4b0082;
+            color: white;
+            border: 2px solid #FFD700;
+            padding: 10px 6px;
+            cursor: pointer;
+            font-family: 'Comic Sans MS', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.15s;
+        }
+
+        .segno-btn:hover { background: #FFD700; color: black; }
+
+        /* === MAGIC 8 BALL === */
+        #magic8-ball {
+            width: 160px;
+            height: 160px;
+            background: radial-gradient(circle at 35% 35%, #333, #000);
+            border-radius: 50%;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 5px solid #111;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            display: none;
+        }
+
+        #magic8-inner {
+            width: 80px;
+            height: 80px;
+            background: #00008B;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #magic8-text {
+            color: white;
+            font-size: 0.65rem;
+            font-family: 'Comic Sans MS', sans-serif;
+            font-weight: bold;
+            text-align: center;
+            padding: 5px;
+        }
+
+        /* === QUIZ === */
+        .quiz-question {
+            background: #4b0082;
+            color: white;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            border: 3px solid #FFD700;
+            text-align: left;
+            font-size: 1.15rem;
+            line-height: 1.5;
+        }
+
+        .quiz-options { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+
+        .quiz-option {
+            background: #e0e0e0;
+            border: 2px solid black;
+            padding: 12px 15px;
+            cursor: pointer;
+            text-align: left;
+            font-family: 'Comic Sans MS', sans-serif;
+            font-size: 1rem;
+            transition: background 0.1s;
+        }
+
+        .quiz-option:hover:not(:disabled) { background: #FFD700; }
+        .quiz-option.correct { background: #00cc00 !important; color: white; }
+        .quiz-option.wrong { background: #cc0000 !important; color: white; }
+        .quiz-option:disabled { cursor: not-allowed; }
+
+        /* === GAME AREA === */
+        #game-area {
+            background: #1a1a2e;
+            border: 5px solid #FFD700;
+            padding: 15px;
+            position: relative;
+            border-radius: 4px;
+        }
+
+        #game-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            background: #000;
+            color: #FFD700;
+            padding: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            font-family: monospace;
+            gap: 5px;
+        }
+
+        #game-timer-bar-container {
+            background: #333;
+            height: 18px;
+            border: 2px solid #FFD700;
+            margin: 8px 0;
+        }
+
+        #game-timer-bar {
+            height: 100%;
+            background: #00ff00;
+            transition: width 0.1s linear;
+        }
+
+        #game-message {
+            font-size: 1.6rem;
+            color: #FFD700;
+            font-family: 'Impact', sans-serif;
+            min-height: 45px;
+            padding: 5px;
+        }
+
+        #game-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 15px auto;
+            max-width: 420px;
+        }
+
+        .hole {
+            background: radial-gradient(ellipse at center bottom, #5c3a1e, #2d1a0e);
+            border-radius: 50%;
+            height: 105px;
+            position: relative;
+            overflow: hidden;
+            border: 4px solid #8B4513;
+            cursor: pointer;
+            box-shadow: inset 0 -8px 15px rgba(0,0,0,0.5);
+        }
+
+        .mole {
+            position: absolute;
+            bottom: -120%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3.5rem;
+            transition: bottom 0.15s ease-out;
+            cursor: pointer;
+            user-select: none;
+            line-height: 1;
+            filter: drop-shadow(2px 2px 3px rgba(0,0,0,0.5));
+        }
+
+        .mole.up { bottom: 2px; }
+
+        #start-game-btn {
+            font-family: 'Impact', sans-serif;
+            font-size: 1.8rem;
+            background: #cc0000;
+            color: white;
+            border: 4px outset #880000;
+            padding: 12px 30px;
+            cursor: pointer;
+            margin: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        #start-game-btn:hover { background: #FFD700; color: black; }
+        #start-game-btn:disabled { opacity: 0.5; cursor: not-allowed; background: #555; }
+
+        /* === CLICKER GAME === */
+        #clicker-section {
+            background: #0d0d1a;
+            border: 5px solid #ff00ff;
+            padding: 20px;
+            margin-top: 25px;
+        }
+
+        #andrea-clicker {
+            font-size: 7rem;
+            cursor: pointer;
+            user-select: none;
+            display: inline-block;
+            transition: transform 0.1s;
+            filter: drop-shadow(0 0 15px rgba(255,0,255,0.4));
+        }
+
+        #andrea-clicker:active { transform: scale(0.82) rotate(-8deg) !important; }
+
+        .upgrade-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .upgrade-btn {
+            background: #220044;
+            color: white;
+            border: 2px solid #ff00ff;
+            padding: 10px;
+            cursor: pointer;
+            font-family: 'Comic Sans MS', sans-serif;
+            font-size: 0.85rem;
+            text-align: center;
+            transition: all 0.15s;
+        }
+
+        .upgrade-btn:hover:not(:disabled) { background: #ff00ff; }
+        .upgrade-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+        /* === GENERATORE SCUSE === */
+        #scusa-display {
+            background: #fffacd;
+            border: 5px dashed #ff0000;
+            padding: 20px;
+            font-size: 1.35rem;
+            font-style: italic;
+            color: #4b0082;
+            min-height: 80px;
+            margin: 20px 0;
+            display: none;
+            text-align: left;
+            line-height: 1.6;
+        }
+
+        #messaggio-display {
+            display: none;
+            background: #fffacd;
+            border: 3px solid black;
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 1.2rem;
+            text-align: left;
+            border-radius: 8px;
+        }
+
+        .calc-result {
+            font-size: 1.4rem;
+            background: #000;
+            color: #0f0;
+            padding: 20px;
+            font-family: monospace;
+            border: 3px solid #0f0;
+            margin-top: 20px;
+            display: none;
+            line-height: 1.8;
+        }
+
+        /* === PLAYLIST === */
+        .playlist-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 10px 15px;
+            border-bottom: 1px solid #333;
+            background: #1a1a1a;
+            color: white;
+            text-align: left;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .playlist-item:hover { background: #2a2a2a; }
+        .playlist-item.now-playing { background: #1a3a1a !important; }
+
+        .playlist-num { font-size: 1rem; width: 28px; color: #999; font-family: monospace; flex-shrink: 0; }
+        .playlist-info { flex: 1; overflow: hidden; }
+        .playlist-title { font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .playlist-artist { font-size: 0.8rem; color: #999; }
+        .playlist-duration { color: #999; font-family: monospace; font-size: 0.9rem; flex-shrink: 0; }
+        .now-playing .playlist-num { color: #1DB954; }
+        .now-playing .playlist-title { color: #1DB954; }
+
+        /* === CLASSIFICA === */
+        .rank-table { width: 100%; border-collapse: collapse; font-size: 1rem; }
+        .rank-table th { background: #000; color: #FFD700; padding: 10px; border: 1px solid #333; }
+        .rank-table td { padding: 8px 10px; border: 1px solid #ccc; }
+        .rank-table tr:nth-child(even) td { background: #f5f5f5; }
+        .rank-table tr:first-child td { background: #FFD700 !important; font-weight: bold; font-size: 1.1rem; }
+        .rank-table tr:nth-child(2) td { background: #C0C0C0 !important; }
+        .rank-table tr:nth-child(3) td { background: #CD7F32 !important; color: white; }
+
+        /* === SEGNALAZIONI === */
+        .segnalazione {
+            background: #fff0f0;
+            border-left: 5px solid #cc0000;
+            padding: 12px 15px;
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        .segnalazione .autore { font-weight: bold; color: #4b0082; }
+        .segnalazione .data { font-size: 0.8rem; color: #999; }
+        .segnalazione p { margin: 8px 0 0; font-size: 1.05rem; }
+
+        /* === STATS === */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: #000;
+            color: #FFD700;
+            padding: 15px 10px;
+            border: 3px solid #FFD700;
+        }
+
+        .stat-number { font-size: 2.5rem; font-weight: bold; font-family: monospace; }
+        .stat-label { font-size: 0.72rem; color: #aaa; margin-top: 5px; }
+
+        /* === GUESTBOOK === */
+        .guestbook-entry {
+            background: #fffacd;
+            border: 2px solid #aaa;
+            padding: 15px;
+            margin: 10px 0;
+            text-align: left;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        /* === NOTIFICATIONS === */
+        .notif-popup {
+            position: fixed;
+            top: 75px;
+            right: 15px;
+            background: #cc0000;
+            color: white;
+            padding: 12px 15px;
+            border: 3px solid black;
+            z-index: 9000;
+            font-family: 'Comic Sans MS', sans-serif;
+            font-weight: bold;
+            font-size: 0.9rem;
+            max-width: 270px;
+            animation: slideIn 0.3s ease;
+            box-shadow: 4px 4px 0 black;
+        }
+
+        /* === COOKIE NOTICE === */
+        #cookie-notice {
+            position: fixed;
+            bottom: 115px;
+            left: 10px;
+            right: 10px;
+            background: #4b0082;
+            color: white;
+            padding: 12px;
+            border: 4px solid #FFD700;
+            z-index: 500;
+            text-align: center;
+            font-size: 1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* === KONAMI EASTER EGG === */
+        #konami-easter {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            font-family: 'Impact', sans-serif;
+        }
+
+        /* === CV TABLE === */
+        .cv-table { width: 100%; border-collapse: collapse; text-align: left; }
+        .cv-table th { background: #000; color: #FFD700; padding: 8px 12px; border: 2px solid #333; }
+        .cv-table td { padding: 8px 12px; border: 2px solid #ccc; }
+        .cv-table tr:nth-child(odd) td { background: #e8e8e8; }
+
+        /* === RATING STARS === */
+        .rating-stars {
+            color: #FFD700;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: transform 0.1s;
+        }
+        .rating-stars:hover { transform: scale(1.2); }
+
+        /* === PROGRESS BARS (quiz) === */
+        .progress-mini {
+            background: #ddd;
+            height: 10px;
+            border: 1px solid #999;
+            margin-top: 5px;
+        }
+        .progress-mini-bar { height: 100%; background: #cc0000; transition: width 0.3s; }
+
+        /* === COUNTDOWN === */
+        .countdown-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .cd-box {
+            text-align: center;
+            background: #1a1a1a;
+            padding: 15px 5px;
+            border: 2px solid #555;
+        }
+
+        .cd-num { font-size: 2.8rem; font-family: monospace; color: #cc0000; font-weight: bold; }
+        .cd-label { font-size: 0.75rem; color: #999; }
+
+        /* === ANIMATIONS === */
         @keyframes blink {
             0% { opacity: 1; }
-            50% { opacity: 0.5; }
+            50% { opacity: 0.4; }
             100% { opacity: 1; }
         }
 
         @keyframes rainbow {
-            0% { background-color: red; color: yellow; }
-            20% { background-color: yellow; color: blue; }
-            40% { background-color: blue; color: red; }
-            60% { background-color: green; color: white; }
-            80% { background-color: orange; color: black; }
-            100% { background-color: red; color: yellow; }
+            0%   { background-color: red;    color: yellow; }
+            20%  { background-color: yellow; color: blue; }
+            40%  { background-color: blue;   color: red; }
+            60%  { background-color: green;  color: white; }
+            80%  { background-color: orange; color: black; }
+            100% { background-color: red;    color: yellow; }
         }
 
-        .marquee-style {
-            background-color: blue;
-            color: white;
-            font-weight: bold;
-            padding: 5px;
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25%  { transform: translateX(-8px); }
+            75%  { transform: translateX(8px); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50%  { transform: translateY(-12px); }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(320px); opacity: 0; }
+            to   { transform: translateX(0);     opacity: 1; }
+        }
+
+        @keyframes pop {
+            0%   { transform: scale(1); }
+            50%  { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        .floating { animation: float 3s ease-in-out infinite; }
+
+        /* === ASCII CHART === */
+        #ascii-chart {
+            background: #111;
+            color: #0f0;
             font-family: monospace;
+            font-size: 0.78rem;
+            padding: 15px;
+            border: 2px solid #0f0;
+            overflow-x: auto;
+            text-align: left;
+            white-space: pre;
         }
 
-        /* =========================================
-           VERSIONE MOBILE (RESPONSIVE TRASH)
-           Si attiva solo se lo schermo è piccolo (< 768px)
-           ========================================= */
+        /* === INPUT STYLES === */
+        input[type="text"], input[type="number"], textarea, select {
+            font-family: 'Comic Sans MS', sans-serif;
+        }
+
+        /* === RESPONSIVE === */
         @media screen and (max-width: 768px) {
-            body {
-                padding: 5px; /* Meno spazio ai lati */
-                border: 5px solid red; /* Bordo più sottile */
-            }
-
-            .container {
-                width: 95%; /* Occupa tutto lo schermo */
-                border: 2px solid blue;
-                padding: 10px;
-                box-shadow: none; /* Togliamo l'ombra pesante */
-            }
-
-            h1 {
-                font-size: 2.5rem; /* Titolo più piccolo sennò esplode */
-                line-height: 1;
-            }
-
-            h2 {
-                font-size: 1.2rem;
-                transform: rotate(0deg); /* Drizziamo il sottotitolo */
-            }
-
-            /* Bottoni e Checkbox enormi per dita grasse */
-            input[type="checkbox"] {
-                width: 35px;
-                height: 35px;
-                margin-right: 15px;
-            }
-
-            li {
-                font-size: 1rem;
-                padding: 10px;
-                display: flex; /* Allinea checkbox e testo */
-                align-items: center;
-                text-align: left;
-            }
-
-            /* Adattiamo la timeline */
-            .timeline {
-                margin-left: 5px;
-                padding-left: 15px;
-            }
-
-            /* Barra del disagio fissa in basso */
-            #disagio-meter {
-                padding: 5px;
-                bottom: 0;
-                border-width: 2px;
-            }
-
-            #progress-bar {
-                font-size: 0.8rem; /* Testo più piccolo */
-            }
-
-            /* Adattiamo il bottone del download */
-            #final-prize button {
-                width: 100%; /* Bottone a tutta larghezza */
-                font-size: 1.2rem !important;
-                white-space: normal; /* Permette al testo di andare a capo */
-            }
-            
-            /* Nascondiamo cose inutili su mobile se vuoi */
-            .marquee-style {
-                font-size: 0.8rem;
-            }
+            body { border: 5px solid red; }
+            .container { width: 99%; padding: 10px; box-shadow: none; border: 2px solid blue; }
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1rem; transform: rotate(0deg); }
+            h3 { font-size: 1.1rem; }
+            .segno-grid { grid-template-columns: repeat(3, 1fr); }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            #game-grid { max-width: 310px; }
+            .hole { height: 85px; }
+            .mole { font-size: 2.8rem; }
+            .tab-btn { font-size: 0.7rem; padding: 6px 8px; }
+            #game-stats { font-size: 0.9rem; }
+            .upgrade-grid { grid-template-columns: 1fr; }
+            .rank-table { font-size: 0.8rem; }
+            .countdown-grid { grid-template-columns: repeat(2, 1fr); }
+            #top-bar { font-size: 0.75rem; gap: 8px; }
+            #disagio-meter { padding: 6px; }
+            #cookie-notice { bottom: 100px; font-size: 0.85rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="marquee-style">
-        <marquee scrollamount="15">🚨 ATTENZIONE: LIVELLI DI CRINGE CRITICI RILEVATI - NON DARE DA MANGIARE AL SOGGETTO DOPO MEZZANOTTE 🚨</marquee>
-    </div>
+<!-- ===== COOKIE NOTICE ===== -->
+<div id="cookie-notice" style="display:none;">
+    🍪 Questo sito usa i cookie per tracciare il tuo livello di disagio e quello di Andrea.<br>
+    Accettando dichiari di essere consapevole che Andrea è un caso umano.<br><br>
+    <button class="btn-trash" onclick="document.getElementById('cookie-notice').style.display='none'">✅ ACCETTO (OVVIAMENTE)</button>
+    <button class="btn-trash" onclick="document.getElementById('cookie-notice').style.display='none'">❌ RIFIUTO (come Andrea rifiuta la realtà)</button>
+</div>
 
-    <div class="container">
-        <header>
-            <h1>ANDREA RISUCCHIO</h1>
-            <h2>IL SITO UFFICIALE DEL DISAGIO</h2>
-            <p style="font-size: 1.5rem;">~ Cronache di una vita spesa male ~</p>
-            <img src="IMG-20231013-WA0012.jpg" alt="Foto Imbarazzante" style="border: 5px ridge grey;" width="100px" height="100px">
-            <p><i>Webmaster: I Suoi (Ex) Amici</i></p>
-        </header>
+<!-- ===== MARQUEES ===== -->
+<div class="marquee-style">
+    <marquee scrollamount="15">🚨 ATTENZIONE: LIVELLI DI CRINGE CRITICI RILEVATI — NON DARE DA MANGIARE AL SOGGETTO DOPO MEZZANOTTE 🚨</marquee>
+</div>
+<div style="background:#ff00ff; color:white; font-weight:bold; padding:5px; font-family:monospace; font-size:0.85rem;">
+    <marquee scrollamount="9" direction="right">💀 ANDREA RISUCCHIO — IL SITO CHE NON AVREBBE MAI VOLUTO ESISTESSE 💀 Premi ↑↑↓↓←→←→BA per un segreto 💀</marquee>
+</div>
 
-        <hr style="border: 2px solid black;">
+<!-- ===== TOP BAR ===== -->
+<div id="top-bar">
+    🌐 Visitatori: <span id="hit-counter">069420</span>
+    &nbsp;|&nbsp; 👤 Online ora: <span id="online-count">1</span>
+    &nbsp;|&nbsp; 📅 Data: <span id="current-date"></span>
+    &nbsp;|&nbsp; ⏰ Ora: <span id="current-time-display"></span>
+</div>
+
+<!-- ===== TAB NAV ===== -->
+<nav class="tab-nav">
+    <button class="tab-btn active" id="btn-home"         onclick="switchTab('home',this)">🏠 HOME</button>
+    <button class="tab-btn"        id="btn-oroscopo"     onclick="switchTab('oroscopo',this)">🔮 OROSCOPO</button>
+    <button class="tab-btn"        id="btn-quiz"         onclick="switchTab('quiz',this)">🧠 QUIZ</button>
+    <button class="tab-btn"        id="btn-gioco"        onclick="switchTab('gioco',this)">🎮 GIOCO</button>
+    <button class="tab-btn"        id="btn-scuse"        onclick="switchTab('scuse',this)">🤥 SCUSE</button>
+    <button class="tab-btn"        id="btn-playlist"     onclick="switchTab('playlist',this)">🎵 PLAYLIST</button>
+    <button class="tab-btn"        id="btn-classifica"   onclick="switchTab('classifica',this)">🏆 CLASSIFICA</button>
+    <button class="tab-btn"        id="btn-guestbook"    onclick="switchTab('guestbook',this)">📝 GUESTBOOK</button>
+    <button class="tab-btn"        id="btn-statistiche"  onclick="switchTab('statistiche',this)">📊 STATS</button>
+</nav>
+
+<!-- ===== MAIN CONTAINER ===== -->
+<div class="container">
+
+    <header>
+        <h1>ANDREA RISUCCHIO</h1>
+        <h2>IL SITO UFFICIALE DEL DISAGIO v2.0</h2>
+        <p style="font-size: 1.4rem; margin: 8px 0;">~ Cronache di una vita spesa male ~</p>
+        <div class="floating" style="display:inline-block;">
+            <img src="IMG-20231013-WA0012.jpg" alt="Foto Imbarazzante di Andrea"
+                 style="border: 5px ridge grey; border-radius: 50%;" width="120px" height="120px">
+        </div>
+        <p style="font-style:italic; color:#888; margin:5px 0;">Webmaster: I Suoi (Ex) Amici</p>
+        <p style="font-size:0.9rem; color:#cc0000; font-weight:bold;">
+            ⚠️ Questo sito contiene livelli di cringe potenzialmente letali. ⚠️
+        </p>
+    </header>
+
+    <hr style="border: 3px solid black; margin: 15px 0;">
+
+    <!-- ================================================ -->
+    <!--                   TAB: HOME                       -->
+    <!-- ================================================ -->
+    <div id="tab-home" class="tab-content active">
 
         <section class="section-box">
             <h3>🏆 TOP 5 COSE DA 'RIMASTO'</h3>
-            <p>Seleziona le caselle se Andrea ha fatto queste cose (sappiamo che le ha fatte).</p>
+            <p>Seleziona le caselle se Andrea ha fatto queste cose (sappiamo già che le ha fatte).</p>
             <ol>
-                <li><label><input type="checkbox" class="disagio-check">Usare gli skinny nel big 2025</label></li>
-                <li><label><input type="checkbox" class="disagio-check">Ascoltare e sapere a memoria tutte le canzoni di tha supreme</label></li>
-                <li><label><input type="checkbox" class="disagio-check">Soffrire della chiamarberg</label></li>
-                <li><label><input type="checkbox" class="disagio-check">Le NOTE di su instragram</label></li>
-                <li><label><input type="checkbox" class="disagio-check">Negare il fatto di essere gay</label></li>
+                <li><label><input type="checkbox" class="disagio-check"> Usare gli skinny nel big 2025</label></li>
+                <li><label><input type="checkbox" class="disagio-check"> Ascoltare e sapere a memoria TUTTE le canzoni di Tha Supreme</label></li>
+                <li><label><input type="checkbox" class="disagio-check"> Soffrire della chiamarberg</label></li>
+                <li><label><input type="checkbox" class="disagio-check"> Le NOTE su Instagram (con la citazione)</label></li>
+                <li><label><input type="checkbox" class="disagio-check"> Negare il fatto di essere gay</label></li>
             </ol>
+        </section>
+
+        <section class="section-box">
+            <h3>🚩 RED FLAGS CERTIFICATE™</h3>
+            <p>Testimoniati personalmente da almeno 2 testimoni oculari:</p>
+            <ul>
+                <li><label><input type="checkbox" class="disagio-check"> 🚩 Ha ancora il capello scolpito col gel a 19 anni</label></li>
+                <li><label><input type="checkbox" class="disagio-check"> 🚩 Dice "bro" e "cap" in italiano come se fossero normali</label></li>
+                <li><label><input type="checkbox" class="disagio-check"> 🚩 Mette il pollice su alle proprie storie con account fake</label></li>
+                <li><label><input type="checkbox" class="disagio-check"> 🚩 Ha likeato foto di qualcuno del 2009 fino al 2016 alle 3 di notte</label></li>
+                <li><label><input type="checkbox" class="disagio-check"> 🚩 Inizia ogni frase con "Onestamente parlando..."</label></li>
+                <li><label><input type="checkbox" class="disagio-check"> 🚩 Ha bloccato e sbloccato la stessa persona più di 5 volte</label></li>
+                <li><label><input type="checkbox" class="disagio-check"> 🚩 Ha messo la storia "in giro 🌙" mentre era sul divano in pigiama</label></li>
+                <li><label><input type="checkbox" class="disagio-check"> 🚩 Ha un profilo Spotify con playlist "Vibez 🌙✨"</label></li>
+            </ul>
         </section>
 
         <section class="section-box">
             <h3>📉 CRONOLOGIA DELLO SFIGATO</h3>
             <div class="timeline">
                 <div class="timeline-item">
-                    <span class="timeline-date">Capodanno 2024</span>
-                    <br>
-                    <label><input type="checkbox" class="disagio-check"> Basta voglio suicidarmi le 2010 non mi vogliono</label>
+                    <span class="timeline-date">Capodanno 2024</span><br>
+                    <label><input type="checkbox" class="disagio-check"> "Basta voglio suicidarmi le 2010 non mi vogliono"</label>
                 </div>
                 <div class="timeline-item">
-                    <span class="timeline-date">Valencia 2025</span>
-                    <br>
-                    <label><input type="checkbox" class="disagio-check">Basta!! adesso vado a sfondarmi di alcol da solo in disco</label>
+                    <span class="timeline-date">Valencia 2025</span><br>
+                    <label><input type="checkbox" class="disagio-check"> "Basta!! adesso vado a sfondarmi di alcol da solo in disco"</label>
                 </div>
                 <div class="timeline-item">
-                    <span class="timeline-date">Discord</span>
-                    <br>
-                    <label><input type="checkbox" class="disagio-check">Mi hanno espluso troppe volte adesso non entro per 10 secondi per farmi desiderare</label>
+                    <span class="timeline-date">Discord (varie date)</span><br>
+                    <label><input type="checkbox" class="disagio-check"> "Mi hanno espulso troppe volte, non entro per 10 secondi per farmi desiderare"</label>
                 </div>
                 <div class="timeline-item">
-                    <span class="timeline-date">Lia</span>
-                    <br>
-                    <label><input type="checkbox" class="disagio-check">Che palle!!! tutti voglio quella figa di mia sorella</label>
+                    <span class="timeline-date">Lia</span><br>
+                    <label><input type="checkbox" class="disagio-check"> "Che palle!!! tutti vogliono quella figa di mia sorella"</label>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">Palestra 2025</span><br>
+                    <label><input type="checkbox" class="disagio-check"> Si è preso un selfie con le braccia pompate e lo ha mandato in chat senza che nessuno glielo avesse chiesto</label>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">Notte di mercoledì (qualsiasi)</span><br>
+                    <label><input type="checkbox" class="disagio-check"> Ha guardato le storie di 47 persone diverse senza rispondere a nessuno</label>
+                </div>
+                <div class="timeline-item">
+                    <span class="timeline-date">Cena di gruppo</span><br>
+                    <label><input type="checkbox" class="disagio-check"> Ha ordinato l'acqua gasata e poi l'ha lasciata lì "perché fa male ai reni"</label>
                 </div>
             </div>
         </section>
 
         <section class="section-box">
-            <h3>Le frasi da gay </h3>
-            <p>Frasi dette realmente (purtroppo).</p>
+            <h3>💬 LE FRASI DA GAY™</h3>
+            <p>Frasi dette realmente (purtroppo). Spunta quelle di cui sei testimone:</p>
             <ul>
                 <li><label><input type="checkbox" class="disagio-check"> "Hai un bel sorriso"</label></li>
-                <li><label><input type="checkbox" class="disagio-check"> "Se Ale non viene non ci sono manco io".</label></li>
-                <li><label><input type="checkbox" class="disagio-check"> "Non è gay se ci tocchiamo solo i gomiti."</label></li>
+                <li><label><input type="checkbox" class="disagio-check"> "Se Ale non viene non ci sono manco io"</label></li>
+                <li><label><input type="checkbox" class="disagio-check"> "Non è gay se ci tocchiamo solo i gomiti"</label></li>
                 <li><label><input type="checkbox" class="disagio-check"> "Andiamo in bagno insieme così risparmiamo tempo?"</label></li>
                 <li><label><input type="checkbox" class="disagio-check"> "Bel cazzo"</label></li>
+                <li><label><input type="checkbox" class="disagio-check"> "No dai, sono etero, mi piacciono anche le donne... tipo alcune"</label></li>
+                <li><label><input type="checkbox" class="disagio-check"> "Il rosa non è gay, è SALMONE"</label></li>
+                <li><label><input type="checkbox" class="disagio-check"> "Mangio healthy perché mi rispetto" [mentre mangiava una pizza intera da solo]</label></li>
+                <li><label><input type="checkbox" class="disagio-check"> "Sono un tipo di poche parole" [ha poi scritto per 3 ore di fila]</label></li>
+                <li><label><input type="checkbox" class="disagio-check"> "Le girlcrush non contano"</label></li>
             </ul>
         </section>
+
+        <section class="section-box">
+            <h3>📱 ANALISI SMARTPHONE CLASSIFICATA</h3>
+            <p>Dati estratti dal telefono di Andrea (senza consenso, come di dovere):</p>
+            <ul>
+                <li><label><input type="checkbox" class="disagio-check"> Ha la suoneria di default iPhone dal 2019</label></li>
+                <li><label><input type="checkbox" class="disagio-check"> Screenshots delle chat degli altri salvati nel rullino</label></li>
+                <li><label><input type="checkbox" class="disagio-check"> 3 account Instagram: ufficiale, fake, "finsta"</label></li>
+                <li><label><input type="checkbox" class="disagio-check"> 94% batteria consumata tra TikTok e storie IG</label></li>
+                <li><label><input type="checkbox" class="disagio-check"> WhatsApp: "Ultimo accesso alle 3:47 di notte"</label></li>
+                <li><label><input type="checkbox" class="disagio-check"> Ha cercato "come sembrare più alto" su Google (due volte)</label></li>
+                <li><label><input type="checkbox" class="disagio-check"> Ha la cartella nascosta con selfie di se stesso</label></li>
+            </ul>
+        </section>
+
+        <section class="section-box">
+            <h3>🎓 CURRICULUM VITAE DEL DISAGIO</h3>
+            <table class="cv-table">
+                <tr><th>Campo</th><th>Informazione</th></tr>
+                <tr><td><b>Nome</b></td><td>Andrea "Il Disagio" Risucchio</td></tr>
+                <tr><td><b>Età</b></td><td>Abbastanza grande da sapere meglio</td></tr>
+                <tr><td><b>Occupazione</b></td><td>Professionista del Lamentarsi, Stalker IG amatoriale</td></tr>
+                <tr><td><b>Competenze</b></td><td>Cringe avanzato, capire Tha Supreme, uscire da Discord strategicamente</td></tr>
+                <tr><td><b>Lingue</b></td><td>Italiano (B1), Anglofagiano (A0), Disagio (Madrelingua C2)</td></tr>
+                <tr><td><b>Hobby</b></td><td>Palestra (dichiarata), TikTok (praticata), Fare il misterioso (tentata)</td></tr>
+                <tr><td><b>Obiettivo</b></td><td>Trovare una ragazza che lo sopporti per più di 2 settimane</td></tr>
+                <tr><td><b>Riferimenti</b></td><td>Disponibili ma preferirebbero restare anonimi</td></tr>
+            </table>
+        </section>
+
+        <section class="section-box">
+            <h3>⭐ VALUTA IL DISAGIO DI ANDREA</h3>
+            <p>Da 1 (quasi normale) a 5 (emergenza nazionale):</p>
+            <div>
+                <span class="rating-stars" id="star1" onclick="rateDisagio(1)">☆</span>
+                <span class="rating-stars" id="star2" onclick="rateDisagio(2)">☆</span>
+                <span class="rating-stars" id="star3" onclick="rateDisagio(3)">☆</span>
+                <span class="rating-stars" id="star4" onclick="rateDisagio(4)">☆</span>
+                <span class="rating-stars" id="star5" onclick="rateDisagio(5)">☆</span>
+            </div>
+            <p id="rating-result" style="font-size:1.2rem; font-weight:bold; min-height:1.5em;"></p>
+        </section>
+
     </div>
 
-    <div id="disagio-meter">
-        <label style="color: yellow; font-family: Impact; font-size: 1.5rem;">⚠️ LIVELLO DI DISAGIO TOTALE ⚠️</label>
-        <div id="progress-container">
-            <div id="progress-bar">0%</div>
+    <!-- ================================================ -->
+    <!--                 TAB: OROSCOPO                     -->
+    <!-- ================================================ -->
+    <div id="tab-oroscopo" class="tab-content">
+        <h3>🔮 OROSCOPO DEL DISAGIO</h3>
+        <p style="font-size:1.1rem;">Scopri cosa dicono le stelle per Andrea oggi.<br><i>(Spoiler: niente di buono.)</i></p>
+
+        <div class="segno-grid">
+            <button class="segno-btn" onclick="showOroscopo('Ariete')">♈ Ariete</button>
+            <button class="segno-btn" onclick="showOroscopo('Toro')">♉ Toro</button>
+            <button class="segno-btn" onclick="showOroscopo('Gemelli')">♊ Gemelli</button>
+            <button class="segno-btn" onclick="showOroscopo('Cancro')">♋ Cancro</button>
+            <button class="segno-btn" onclick="showOroscopo('Leone')">♌ Leone</button>
+            <button class="segno-btn" onclick="showOroscopo('Vergine')">♍ Vergine</button>
+            <button class="segno-btn" onclick="showOroscopo('Bilancia')">♎ Bilancia</button>
+            <button class="segno-btn" onclick="showOroscopo('Scorpione')">♏ Scorpione</button>
+            <button class="segno-btn" onclick="showOroscopo('Sagittario')">♐ Sagittario</button>
+            <button class="segno-btn" onclick="showOroscopo('Capricorno')">♑ Capricorno</button>
+            <button class="segno-btn" onclick="showOroscopo('Acquario')">♒ Acquario</button>
+            <button class="segno-btn" onclick="showOroscopo('Pesci')">♓ Pesci</button>
         </div>
-        
-        <div id="final-prize"></div>
+
+        <div id="oroscopo-result"></div>
+
+        <br>
+        <hr style="border: 3px dashed #ff00ff;">
+        <br>
+
+        <h3>🎱 MAGIC 8-BALL DEL DISAGIO</h3>
+        <p>Poni una domanda su Andrea e l'universo risponderà (male):</p>
+        <input type="text" id="magic-question"
+               placeholder='Es: "Andrea è gay?" oppure "Si laverà i piedi oggi?"'
+               style="width:85%; padding:10px; font-size:1rem; border:3px solid black; background:#fffacd;">
+        <br><br>
+        <button class="btn-trash" onclick="magic8Ball()">🔮 CHIEDI ALL'UNIVERSO</button>
+
+        <div id="magic8-ball">
+            <div id="magic8-inner">
+                <span id="magic8-text">8</span>
+            </div>
+        </div>
     </div>
 
-    <script>
-        // SCRIPT JS: LA LOGICA DEL MALE
-        document.addEventListener("DOMContentLoaded", () => {
-            const checkboxes = document.querySelectorAll('.disagio-check');
-            const progressBar = document.getElementById('progress-bar');
-            const prizeContainer = document.getElementById('final-prize');
-            
-            // Calcolo quanto vale ogni singola checkbox
-            const totalItems = checkboxes.length;
-            const pointsPerItem = 100 / totalItems;
+    <!-- ================================================ -->
+    <!--                   TAB: QUIZ                       -->
+    <!-- ================================================ -->
+    <div id="tab-quiz" class="tab-content">
+        <h3>🧠 QUIZ: QUANTO CONOSCI ANDREA?</h3>
+        <p>10 domande impegnative. Rispondi con onestà... se ne sei capace.</p>
 
-            function updateDisagio() {
-                // Conta quante sono checkate
-                let checkedCount = 0;
-                checkboxes.forEach(box => {
-                    if(box.checked) checkedCount++;
-                });
+        <div id="quiz-wrapper">
+            <div id="quiz-progress-area" style="background:#eee; padding:10px; margin-bottom:15px; text-align:left;">
+                Domanda <b><span id="quiz-current">1</span></b> di <b><span id="quiz-total">10</span></b>
+                <div class="progress-mini"><div class="progress-mini-bar" id="quiz-progress-bar" style="width:10%;"></div></div>
+            </div>
 
-                // Calcola percentuale
-                let percentage = Math.round(checkedCount * pointsPerItem);
-                
-                // Evitiamo decimali brutti e cap a 100
-                if (percentage > 100) percentage = 100;
+            <div class="quiz-question" id="quiz-question-text">Caricamento...</div>
+            <div class="quiz-options" id="quiz-options"></div>
+            <div id="quiz-feedback" style="min-height:40px; font-size:1rem; padding:8px; font-weight:bold;"></div>
+        </div>
 
-                // Aggiorna la barra
-                progressBar.style.width = percentage + "%";
-                progressBar.innerText = percentage + "% DISAGIO";
+        <div id="quiz-result" style="display:none;">
+            <div id="quiz-result-content" style="padding:20px; border:5px solid black; margin:20px 0;"></div>
+            <button class="btn-trash" onclick="restartQuiz()">🔄 RIGIOCA IL QUIZ</button>
+        </div>
+    </div>
 
-                // Cambia colore barra in base alla gravità
-                if(percentage < 50) {
-                    progressBar.style.backgroundColor = "#ff0000"; // Rosso base
-                } else if (percentage < 90) {
-                    progressBar.style.backgroundColor = "#ff6600"; // Arancione allerta
-                } else {
-                    progressBar.style.backgroundColor = "#8B0000"; // Rosso sangue scuro
-                }
+    <!-- ================================================ -->
+    <!--                   TAB: GIOCO                      -->
+    <!-- ================================================ -->
+    <div id="tab-gioco" class="tab-content">
 
-                // CONTROLLO FINALE (LOGICA DATA)
-                if (percentage >= 99) { // Tolleranza arrotondamento
-                    checkDateAndAwardPrize();
-                } else {
-                    prizeContainer.style.display = "none";
-                }
-            }
+        <h3>🎮 AMMAZZA L'ANDREA!</h3>
+        <p>Andrea continua a fare il disagiato. Colpiscilo prima che sparisca!<br>
+           <small style="color:#cc0000;">⚠️ Ogni colpo = 1 dose di dignità somministrata forzatamente</small>
+        </p>
 
-            function checkDateAndAwardPrize() {
-                const today = new Date();
-                const currentYear = today.getFullYear();
-                
-                // Imposta la scadenza al 31 Dicembre
-                const deadline = new Date(currentYear, 11, 31, 23, 59, 59);
+        <div id="game-area">
+            <div id="game-stats">
+                <div>🎯 <span id="score">0</span></div>
+                <div>⏱️ <span id="timer">30</span>s</div>
+                <div>🔥 <span id="combo">x1</span></div>
+                <div>🏆 <span id="highscore">0</span></div>
+            </div>
 
-                prizeContainer.style.display = "block";
-                prizeContainer.innerHTML = "";
+            <div id="game-timer-bar-container">
+                <div id="game-timer-bar" style="width:100%;"></div>
+            </div>
 
-                if (today <= deadline) {
-                    // SE È ANCORA IN TEMPO:
-                    // Genera il bottone che punta direttamente al file nella cartella
-                    prizeContainer.innerHTML = `
-                        🎉 PREMIO SBLOCCATO! 🎉<br>
-                        <span style="font-size: 1rem;">Hai vinto un:</span><br>
-                        <strong>CORSO DI RECUPERO DELLA DIGNITÀ</strong><br>
-                        <br>
-                        <a href="certificato_andrea.pdf" download="Certificato_Dignita_Andrea.pdf" style="text-decoration:none;">
-                            <button style="
-                                font-size: 1.5rem; 
-                                cursor: pointer; 
-                                background: #00FF00; 
-                                border: 5px outset #005500; 
-                                font-family: Impact; 
-                                padding: 15px; 
-                                color: black;
-                                text-transform: uppercase;
-                                animation: blink 2s infinite;">
-                                📥 SCARICA IL CERTIFICATO
-                            </button>
-                        </a>
-                        <br><br>
-                        <span style="font-size: 0.8rem;">(Stampalo e appenditelo in camera)</span>
-                    `;
-                } else {
-                    // SE È TROPPO TARDI:
-                    prizeContainer.innerHTML = `
-                        💀 GAME OVER 💀<br>
-                        Troppo tardi, Andrea.<br>
-                        Il file è stato cancellato dall'internet.<br>
-                        <span style="font-size: 1rem;">(Riprova l'anno prossimo, sfigato)</span>
-                    `;
-                    prizeContainer.style.backgroundColor = "black";
-                    prizeContainer.style.color = "red";
-                    prizeContainer.style.border = "5px solid red";
-                }
-            }
-            // Aggiungi listener a tutte le checkbox
-            checkboxes.forEach(box => {
-                box.addEventListener('change', updateDisagio);
-            });
-        });
-    </script>
+            <div id="game-message">PREMI START PER INIZIARE!</div>
+
+            <div id="game-grid">
+                <div class="hole" id="hole0"><div class="mole" id="mole0" onclick="bonkMole(event,0)">🤡</div></div>
+                <div class="hole" id="hole1"><div class="mole" id="mole1" onclick="bonkMole(event,1)">🤡</div></div>
+                <div class="hole" id="hole2"><div class="mole" id="mole2" onclick="bonkMole(event,2)">🤡</div></div>
+                <div class="hole" id="hole3"><div class="mole" id="mole3" onclick="bonkMole(event,3)">🤡</div></div>
+                <div class="hole" id="hole4"><div class="mole" id="mole4" onclick="bonkMole(event,4)">🤡</div></div>
+                <div class="hole" id="hole5"><div class="mole" id="mole5" onclick="bonkMole(event,5)">🤡</div></div>
+                <div class="hole" id="hole6"><div class="mole" id="mole6" onclick="bonkMole(event,6)">🤡</div></div>
+                <div class="hole" id="hole7"><div class="mole" id="mole7" onclick="bonkMole(event,7)">🤡</div></div>
+                <div class="hole" id="hole8"><div class="mole" id="mole8" onclick="bonkMole(event,8)">🤡</div></div>
+            </div>
+
+            <button id="start-game-btn" onclick="startGame()">▶ START</button>
+
+            <div id="achievements-box" style="text-align:left; margin-top:15px; color:#aaa; font-size:0.9rem;">
+                <span style="color:#FFD700; font-family:'Impact',sans-serif; font-size:1.1rem;">🏅 ACHIEVEMENT:</span>
+                <div id="achievement-list">Nessuno ancora. Quasi peggio di Andrea.</div>
+            </div>
+        </div>
+
+        <!-- CLICKER GAME -->
+        <div id="clicker-section">
+            <h3 style="color:#ff00ff; background:#0d0d1a; border-color:#ff00ff;">👆 CLICKER: ACCUMULA DISAGIO</h3>
+            <p style="color:#ddd; font-size:1rem;">Clicca Andrea per accumulare Disagio Points™ e sblocca gli upgrade!</p>
+
+            <div id="andrea-clicker">🤡</div>
+
+            <div style="color:#FFD700; font-size:1.8rem; font-family:monospace; font-weight:bold; margin-top:10px;">
+                <span id="disagio-points">0</span> DP™
+            </div>
+            <div style="color:#aaa; font-size:0.95rem; margin-top:4px;">
+                Auto-disagio: <span id="dps" style="color:#0f0;">0</span> DP/sec
+            </div>
+
+            <div class="upgrade-grid" style="margin-top:15px;">
+                <button class="upgrade-btn" id="up-btn-0" onclick="buyUpgrade(0)">
+                    😒 Lamentarsi<br><small>+1 DPS — Costo: <span id="up-cost-0">10</span> DP</small>
+                </button>
+                <button class="upgrade-btn" id="up-btn-1" onclick="buyUpgrade(1)">
+                    📱 Stalkare su IG<br><small>+5 DPS — Costo: <span id="up-cost-1">50</span> DP</small>
+                </button>
+                <button class="upgrade-btn" id="up-btn-2" onclick="buyUpgrade(2)">
+                    💅 Mettere le note<br><small>+20 DPS — Costo: <span id="up-cost-2">200</span> DP</small>
+                </button>
+                <button class="upgrade-btn" id="up-btn-3" onclick="buyUpgrade(3)">
+                    🪩 Disco da solo<br><small>+100 DPS — Costo: <span id="up-cost-3">1000</span> DP</small>
+                </button>
+                <button class="upgrade-btn" id="up-btn-4" onclick="buyUpgrade(4)">
+                    💔 Innamorarsi<br><small>+500 DPS — Costo: <span id="up-cost-4">5000</span> DP</small>
+                </button>
+                <button class="upgrade-btn" id="up-btn-5" onclick="buyUpgrade(5)">
+                    🏳️‍🌈 Uscire allo scoperto<br><small>+∞ DPS — Costo: <span id="up-cost-5">99999</span> DP</small>
+                </button>
+            </div>
+
+            <div id="clicker-milestone" style="color:#FFD700; font-weight:bold; font-size:1.1rem; margin-top:12px; min-height:1.5em;"></div>
+        </div>
+    </div>
+
+    <!-- ================================================ -->
+    <!--                  TAB: SCUSE                       -->
+    <!-- ================================================ -->
+    <div id="tab-scuse" class="tab-content">
+        <h3>🤥 GENERATORE DI SCUSE DI ANDREA</h3>
+        <p>Andrea ha sempre una scusa. Per qualsiasi cosa. Generane una:</p>
+
+        <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin:20px 0;">
+            <button class="btn-trash" onclick="generateScusa('rispondere')">📵 Perché non risponde</button>
+            <button class="btn-trash" onclick="generateScusa('ritardo')">⏰ Perché è in ritardo</button>
+            <button class="btn-trash" onclick="generateScusa('palestra')">💪 Perché non va in palestra</button>
+            <button class="btn-trash" onclick="generateScusa('ragazza')">💔 Perché non ha la ragazza</button>
+            <button class="btn-trash" onclick="generateScusa('discord')">🎮 Perché esce da Discord</button>
+            <button class="btn-trash" onclick="generateScusa('soldi')">💸 Perché non ha soldi</button>
+            <button class="btn-trash" onclick="generateScusa('gay')">🏳️‍🌈 Perché "non è gay"</button>
+            <button class="btn-trash" onclick="generateScusa('random')" style="background:#4b0082;">🎲 SCUSA TOTALMENTE CASUALE</button>
+        </div>
+
+        <div id="scusa-display"></div>
+
+        <br>
+        <hr style="border:3px dashed #ff00ff;">
+
+        <h3>💬 GENERATORE DI MESSAGGI ANDREA-STYLE</h3>
+        <p>Cosa scriverebbe in questa situazione? Scoprilo:</p>
+        <select id="situazione-select" style="width:85%; padding:10px; font-size:1rem; border:3px solid black; background:#fffacd; display:block; margin:10px auto;">
+            <option value="">— Seleziona una situazione —</option>
+            <option value="likeato">Ha likeato per sbaglio una foto di 5 anni fa</option>
+            <option value="ghostato">L'hanno ghostato</option>
+            <option value="espulso">L'hanno espulso dal server Discord</option>
+            <option value="visto">Qualcuno lo ha ignorato di persona</option>
+            <option value="compleanno">È il suo compleanno ma nessuno ha scritto</option>
+            <option value="esame">Ha preso un voto basso all'esame</option>
+            <option value="skinny">Qualcuno ha criticato i suoi skinny jeans</option>
+        </select>
+        <button class="btn-trash" onclick="generateMessaggio()" style="margin-top:10px;">📝 GENERA MESSAGGIO</button>
+
+        <div id="messaggio-display">
+            <div style="background:#25D366; color:white; display:inline-block; padding:2px 8px; border-radius:5px; font-size:0.8rem; margin-bottom:10px;">
+                WhatsApp • Andrea Risucchio
+            </div><br>
+            <span id="messaggio-text" style="font-style:italic; font-size:1.2rem;"></span>
+            <br><small style="color:#999; float:right; margin-top:8px;">✓✓ Letto</small>
+        </div>
+
+        <br><br>
+        <hr style="border:3px dashed #ff00ff;">
+
+        <h3>🧮 CALCOLATRICE DEL DISAGIO</h3>
+        <p>Calcola il tuo livello personale di disagio (non sarà Andrea, ma quasi):</p>
+
+        <div style="text-align:left; max-width:440px; margin:0 auto; background:#f5f5f5; padding:20px; border:3px solid black;">
+            <label style="display:block; margin-bottom:12px;">Età:
+                <input type="number" id="calc-eta" value="19" min="1" max="100"
+                       style="width:80px; padding:5px; border:2px solid black; margin-left:10px;">
+            </label>
+            <label style="display:block; margin-bottom:12px;">Volte che hai usato "bro" oggi:
+                <input type="number" id="calc-bro" value="0" min="0" max="999"
+                       style="width:80px; padding:5px; border:2px solid black; margin-left:10px;">
+            </label>
+            <label style="display:block; margin-bottom:12px;">Ore su TikTok/Reels oggi:
+                <input type="number" id="calc-tiktok" value="0" min="0" max="24"
+                       style="width:80px; padding:5px; border:2px solid black; margin-left:10px;">
+            </label>
+            <label style="display:block; margin-bottom:12px;">Ex con cui stai ancora "scrivendo":
+                <input type="number" id="calc-ex" value="0" min="0" max="50"
+                       style="width:80px; padding:5px; border:2px solid black; margin-left:10px;">
+            </label>
+            <label style="display:block; margin-bottom:12px;">Storie guardate senza rispondere ai messaggi (oggi):
+                <input type="number" id="calc-stories" value="0" min="0" max="500"
+                       style="width:80px; padding:5px; border:2px solid black; margin-left:10px;">
+            </label>
+            <label style="display:block; margin-bottom:12px;">Volte che hai detto "non sono gay" quest'anno:
+                <input type="number" id="calc-gay" value="0" min="0" max="999"
+                       style="width:80px; padding:5px; border:2px solid black; margin-left:10px;">
+            </label>
+        </div>
+
+        <button class="btn-trash" onclick="calculateDisagio()" style="margin-top:15px; font-size:1.1rem;">⚡ CALCOLA IL MIO DISAGIO</button>
+        <div class="calc-result" id="calc-result"></div>
+    </div>
+
+    <!-- ================================================ -->
+    <!--                 TAB: PLAYLIST                     -->
+    <!-- ================================================ -->
+    <div id="tab-playlist" class="tab-content">
+        <h3>🎵 SPOTIFY DI ANDREA</h3>
+
+        <div style="background:#121212; padding:20px;">
+            <!-- Header -->
+            <div style="display:flex; align-items:center; gap:15px; margin-bottom:20px; background:#1a1a1a; padding:15px;">
+                <div style="width:90px; height:90px; background:linear-gradient(135deg,#cc0000,#ff00ff); display:flex; align-items:center; justify-content:center; font-size:2.5rem; flex-shrink:0;">😭</div>
+                <div style="text-align:left;">
+                    <div style="color:#aaa; font-size:0.8rem;">PLAYLIST • ANDREA RISUCCHIO</div>
+                    <div style="color:white; font-size:1.5rem; font-weight:bold;">Vibez del Disagio 🌙✨</div>
+                    <div style="color:#aaa; font-size:0.85rem;">10 brani · Durata totale: 37:47 di vergogna</div>
+                </div>
+            </div>
+
+            <!-- Tracks -->
+            <div class="playlist-item now-playing" onclick="playTrack(this,'3:47')">
+                <span class="playlist-num">♫</span>
+                <div class="playlist-info">
+                    <div class="playlist-title">Mi sento solo (feat. Tutti i Miei Problemi)</div>
+                    <div class="playlist-artist">Andrea Risucchio</div>
+                </div>
+                <span class="playlist-duration">3:47</span>
+            </div>
+            <div class="playlist-item" onclick="playTrack(this,'4:20')">
+                <span class="playlist-num">2</span>
+                <div class="playlist-info">
+                    <div class="playlist-title">Perché nessuno mi risponde</div>
+                    <div class="playlist-artist">Tha Supreme (cover di Andrea, non autorizzata)</div>
+                </div>
+                <span class="playlist-duration">4:20</span>
+            </div>
+            <div class="playlist-item" onclick="playTrack(this,'6:06')">
+                <span class="playlist-num">3</span>
+                <div class="playlist-info">
+                    <div class="playlist-title">Sono etero però… (Interlude)</div>
+                    <div class="playlist-artist">Andrea Risucchio ft. Dubbi Esistenziali Profondi</div>
+                </div>
+                <span class="playlist-duration">6:06</span>
+            </div>
+            <div class="playlist-item" onclick="playTrack(this,'2:10')">
+                <span class="playlist-num">4</span>
+                <div class="playlist-info">
+                    <div class="playlist-title">Notte in discoteca da solo (Live a Valencia)</div>
+                    <div class="playlist-artist">Andrea Risucchio — LIVE</div>
+                </div>
+                <span class="playlist-duration">2:10</span>
+            </div>
+            <div class="playlist-item" onclick="playTrack(this,'3:15')">
+                <span class="playlist-num">5</span>
+                <div class="playlist-info">
+                    <div class="playlist-title">Gli Skinny Jeans sono tornati (bugiardo)</div>
+                    <div class="playlist-artist">Moda del 2012</div>
+                </div>
+                <span class="playlist-duration">3:15</span>
+            </div>
+            <div class="playlist-item" onclick="playTrack(this,'5:30')">
+                <span class="playlist-num">6</span>
+                <div class="playlist-info">
+                    <div class="playlist-title">Chiamarberg (Acoustic Therapy Version)</div>
+                    <div class="playlist-artist">Andrea Risucchio</div>
+                </div>
+                <span class="playlist-duration">5:30</span>
+            </div>
+            <div class="playlist-item" onclick="playTrack(this,'4:44')">
+                <span class="playlist-num">7</span>
+                <div class="playlist-info">
+                    <div class="playlist-title">Voglio che tutti vengano ma non lo dico</div>
+                    <div class="playlist-artist">Passive Aggressive Records</div>
+                </div>
+                <span class="playlist-duration">4:44</span>
+            </div>
+            <div class="playlist-item" onclick="playTrack(this,'3:33')">
+                <span class="playlist-num">8</span>
+                <div class="playlist-info">
+                    <div class="playlist-title">Il Rosa è Salmone (Non Sono Gay pt. II)</div>
+                    <div class="playlist-artist">Andrea Risucchio</div>
+                </div>
+                <span class="playlist-duration">3:33</span>
+            </div>
+            <div class="playlist-item" onclick="playTrack(this,'2:58')">
+                <span class="playlist-num">9</span>
+                <div class="playlist-info">
+                    <div class="playlist-title">Vabbé (Tutto Ok Interlude)</div>
+                    <div class="playlist-artist">Andrea Risucchio</div>
+                </div>
+                <span class="playlist-duration">2:58</span>
+            </div>
+            <div class="playlist-item" onclick="playTrack(this,'4:04')">
+                <span class="playlist-num">10</span>
+                <div class="playlist-info">
+                    <div class="playlist-title">Discord Pride (Non Entro per 10 Secondi)</div>
+                    <div class="playlist-artist">Andrea Risucchio ft. Server Vuoto</div>
+                </div>
+                <span class="playlist-duration">4:04</span>
+            </div>
+
+            <!-- Player controls -->
+            <div style="margin-top:20px; border-top:1px solid #333; padding-top:15px;">
+                <div id="now-playing-label" style="color:#1DB954; font-size:0.9rem; margin-bottom:10px; text-align:left;">
+                    ▶ Mi sento solo (feat. Tutti i Miei Problemi)
+                </div>
+                <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+                    <span style="color:#aaa; font-size:0.85rem; font-family:monospace;" id="pl-current-time">1:23</span>
+                    <div style="flex:1; background:#444; height:4px; border-radius:2px; cursor:pointer; position:relative;" id="player-bar" onclick="seekTrack(event,this)">
+                        <div id="player-progress" style="width:35%; height:100%; background:#1DB954; border-radius:2px; pointer-events:none;"></div>
+                    </div>
+                    <span style="color:#aaa; font-size:0.85rem; font-family:monospace;" id="pl-total-time">3:47</span>
+                </div>
+                <div style="display:flex; justify-content:center; gap:20px; align-items:center;">
+                    <button style="background:none;border:none;color:#aaa;font-size:1.4rem;cursor:pointer;" title="Shuffle">🔀</button>
+                    <button style="background:none;border:none;color:white;font-size:1.4rem;cursor:pointer;" onclick="prevTrack()">⏮</button>
+                    <button id="play-pause-btn" onclick="togglePlay()"
+                            style="background:white;border:none;border-radius:50%;width:48px;height:48px;font-size:1.3rem;cursor:pointer;">⏸</button>
+                    <button style="background:none;border:none;color:white;font-size:1.4rem;cursor:pointer;" onclick="nextTrack()">⏭</button>
+                    <button style="background:none;border:none;color:#aaa;font-size:1.4rem;cursor:pointer;" title="Repeat">🔁</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================================ -->
+    <!--                TAB: CLASSIFICA                    -->
+    <!-- ================================================ -->
+    <div id="tab-classifica" class="tab-content">
+        <h3>🏆 HALL OF SHAME</h3>
+        <p>Classifica mondiale ufficiale del disagio. Andrea vince sempre.</p>
+
+        <table class="rank-table">
+            <tr>
+                <th>#</th><th>Nome</th><th>Specialità</th><th>Disagio</th><th>Badge</th>
+            </tr>
+            <tr>
+                <td>🥇 1</td>
+                <td><b>ANDREA RISUCCHIO</b></td>
+                <td>Campione del Mondo Disagio</td>
+                <td><b style="color:red;">∞%</b></td>
+                <td>🏆👑🤡</td>
+            </tr>
+            <tr>
+                <td>🥈 2</td>
+                <td>Chiunque gli stia vicino</td>
+                <td>Vittima Collaterale</td>
+                <td>89%</td>
+                <td>😭</td>
+            </tr>
+            <tr>
+                <td>🥉 3</td>
+                <td>Il Suo Account Fake</td>
+                <td>Auto-stalking avanzato</td>
+                <td>76%</td>
+                <td>🕵️</td>
+            </tr>
+            <tr><td>4</td><td>I suoi skinny jeans</td><td>Sopravvissuti contro ogni logica</td><td>71%</td><td>👖</td></tr>
+            <tr><td>5</td><td>La sua lista Spotify</td><td>Cringe musicale elevato</td><td>65%</td><td>🎵</td></tr>
+            <tr><td>6</td><td>TU (visitatore)</td><td>Sei su questo sito volentieri</td><td>55%</td><td>🤦</td></tr>
+            <tr><td>7</td><td>Il suo Discord</td><td>Server con 1 membro: lui</td><td>48%</td><td>🎮</td></tr>
+            <tr><td>8</td><td>Tha Supreme</td><td>Colpevole indiretto</td><td>40%</td><td>🎤</td></tr>
+            <tr><td>9</td><td>Il Gel per capelli</td><td>Complice silenzioso</td><td>35%</td><td>💇</td></tr>
+            <tr><td>10</td><td>Questo sito web</td><td>Ragione d'essere assurda</td><td>30%</td><td>🌐</td></tr>
+        </table>
+
+        <br>
+        <h3>📢 SEGNALAZIONI DEGLI AMICI</h3>
+        <p>Testimonianze verificate (alcune solo per il 95% circa):</p>
+
+        <div class="segnalazione">
+            <div class="autore">👤 Testimone Anonimo #1</div>
+            <div class="data">15 Giugno 2025 • 23:47</div>
+            <p>"L'ho visto mettere la storia 'in giro 🌙' mentre era sul divano di casa in pigiama. Ho le prove fotografiche."</p>
+        </div>
+        <div class="segnalazione">
+            <div class="autore">👤 Testimone Anonimo #2</div>
+            <div class="data">3 Marzo 2025 • 14:20</div>
+            <p>"Ha fatto finta di non conoscere una canzone di Tha Supreme e poi l'ha cantata tutta a memoria parola per parola. Patologico."</p>
+        </div>
+        <div class="segnalazione">
+            <div class="autore">👤 Testimone Anonimo #3</div>
+            <div class="data">Capodanno 2024 • 00:01</div>
+            <p>"A mezzanotte ha guardato le storie di 47 persone invece di festeggiare con noi. Le ho contate sul serio."</p>
+        </div>
+        <div class="segnalazione">
+            <div class="autore">👤 Testimone Anonimo #4</div>
+            <div class="data">Qualsiasi mercoledì mattina</div>
+            <p>"Ha usato 'bro' 23 volte in una singola frase. Ho perso il conto alla 15° ma ho registrato l'audio. Disponibile su richiesta."</p>
+        </div>
+        <div class="segnalazione">
+            <div class="autore">👤 Sorella (testimone diretto)</div>
+            <div class="data">Sempre</div>
+            <p>"Ragazzi, è mio fratello. Posso confermare tutto quello che leggete qui. E c'è molto altro che non sapete ancora."</p>
+        </div>
+    </div>
+
+    <!-- ================================================ -->
+    <!--                 TAB: GUESTBOOK                    -->
+    <!-- ================================================ -->
+    <div id="tab-guestbook" class="tab-content">
+        <h3>📝 GUESTBOOK DEGLI AMICI (E NEMICI)</h3>
+        <p>Lascia un messaggio di supporto (o di sfogo) per Andrea!<br>
+           <small style="color:#cc0000;">⚠️ Andrea non lo vedrà mai. O forse sì. Chi lo sa.</small>
+        </p>
+
+        <div style="background:#f5f5f5; border:3px solid black; padding:20px; margin-bottom:20px; text-align:left;">
+            <label style="display:block; margin-bottom:8px; font-weight:bold;">Il tuo nome (o nickname):</label>
+            <input type="text" id="gb-name" placeholder="Il Tuo Nome"
+                   style="width:100%; padding:10px; font-size:1rem; border:2px solid black; margin-bottom:12px; display:block;">
+
+            <label style="display:block; margin-bottom:8px; font-weight:bold;">Il tuo messaggio per Andrea:</label>
+            <textarea id="gb-message" placeholder="Scrivi qualcosa di memorabile per Andrea..." rows="4"
+                      style="width:100%; padding:10px; font-size:1rem; border:2px solid black; resize:vertical; display:block; margin-bottom:12px;"></textarea>
+
+            <label style="font-weight:bold; margin-right:10px;">Voto al disagio:</label>
+            <select id="gb-rating" style="padding:6px; border:2px solid black;">
+                <option value="1">⭐ Quasi normale</option>
+                <option value="2">⭐⭐ Imbarazzante</option>
+                <option value="3">⭐⭐⭐ Disagiato doc</option>
+                <option value="4">⭐⭐⭐⭐ Grande sfigato</option>
+                <option value="5" selected>⭐⭐⭐⭐⭐ Fenomeno del disagio</option>
+            </select>
+
+            <br><br>
+            <button class="btn-trash" onclick="addGuestbookEntry()">📨 INVIA MESSAGGIO</button>
+        </div>
+
+        <div id="guestbook-entries">
+            <div class="guestbook-entry">
+                <b>🎭 Andrea stesso</b> <span style="color:#999; font-size:0.8rem;">— tempo fa (probabilmente alle 3 di notte)</span>
+                <p>"Non trovo questa cosa per niente divertente. (Però l'ho rimandata a tutti)" ⭐⭐⭐⭐⭐</p>
+            </div>
+            <div class="guestbook-entry">
+                <b>🕵️ L'Account Fake di Andrea</b> <span style="color:#999; font-size:0.8rem;">— 3 minuti dopo</span>
+                <p>"Andrea è il miglior ragazzo del mondo, eterosessualissimo e bellissimo" ⭐⭐⭐⭐⭐</p>
+            </div>
+            <div class="guestbook-entry">
+                <b>😇 Il Webmaster (Ex Amico)</b> <span style="color:#999; font-size:0.8rem;">— ieri sera</span>
+                <p>"Ho creato questo sito e non mi pento di niente. Andrea, ti voglio bene ma sei un caso umano raro." ⭐⭐⭐⭐⭐</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================================ -->
+    <!--               TAB: STATISTICHE                    -->
+    <!-- ================================================ -->
+    <div id="tab-statistiche" class="tab-content">
+        <h3>📊 STATISTICHE IN TEMPO REALE</h3>
+        <p>Dati aggiornati continuamente sull'attività di disagio di Andrea:</p>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="stat-cringe">0</div>
+                <div class="stat-label">MESSAGGI CRINGE<br>INVIATI OGGI</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="stat-stories">0</div>
+                <div class="stat-label">STORIE GUARDATE<br>SENZA RISPONDERE</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="stat-skinny">0</div>
+                <div class="stat-label">DIFESE DEGLI<br>SKINNY JEANS</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="stat-bro">0</div>
+                <div class="stat-label">USO DI "BRO"<br>QUEST'ANNO</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="stat-tha">0</div>
+                <div class="stat-label">CANZONI THA SUPREME<br>SAPUTE A MEMORIA</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="stat-gay">0</div>
+                <div class="stat-label">"NON SONO GAY"<br>DETTO OGGI</div>
+            </div>
+        </div>
+
+        <!-- Countdown -->
+        <div style="background:#000; color:white; padding:20px; border:4px solid #FFD700; margin:20px 0;">
+            <h3 style="color:#FFD700; background:black; border:none; font-size:1.3rem;">⏳ COUNTDOWN AL PROSSIMO DISAGIO</h3>
+            <p style="color:#aaa; font-size:0.85rem;">*Il prossimo disagio è SEMPRE entro pochi minuti. È una certezza matematica.</p>
+            <div class="countdown-grid">
+                <div class="cd-box"><div class="cd-num" id="cd-giorni">00</div><div class="cd-label">GIORNI</div></div>
+                <div class="cd-box"><div class="cd-num" id="cd-ore">00</div><div class="cd-label">ORE</div></div>
+                <div class="cd-box"><div class="cd-num" id="cd-minuti">00</div><div class="cd-label">MINUTI</div></div>
+                <div class="cd-box"><div class="cd-num" id="cd-secondi">00</div><div class="cd-label">SECONDI</div></div>
+            </div>
+        </div>
+
+        <!-- ASCII Chart -->
+        <div style="background:#111; padding:15px; border:3px solid #333; margin:20px 0;">
+            <h4 style="color:#FFD700; text-align:left; margin:0 0 10px;">📈 GRAFICO DISAGIO SETTIMANALE (ASCII ART)</h4>
+            <div id="ascii-chart">
+100% |                                               █
+ 90% |                          █                   ██
+ 80% |                    █     █        █           ██
+ 70% |        █           ██    ██   █   ██    █     ██
+ 60% |   █    ██    █     ██    ██   ██  ██    ██    ██
+ 50% |   ██   ██    ██    ██    ██   ██  ██    ██    ██
+ 40% |   ██   ██    ██    ██    ██   ██  ██    ██    ██
+ 30% |   ██   ██    ██    ██    ██   ██  ██    ██    ██
+      +--+----+----+----+----+----+---+--+----+----+----
+        Lun  Mar  Mer  Gio  Ven  Sab Dom  Ieri  Oggi
+            </div>
+            <p style="color:#555; font-size:0.8rem; text-align:right; margin:5px 0 0;">Come puoi vedere, oggi è il record storico assoluto.</p>
+        </div>
+
+        <!-- Fun facts -->
+        <div style="background:#fffacd; border:3px solid #cc0000; padding:20px; margin:20px 0; text-align:left;">
+            <h4 style="color:#cc0000; margin-top:0;">💡 FUN FACTS SU ANDREA</h4>
+            <ul style="font-size:1.05rem;">
+                <li>Se Andrea spendesse in terapia il tempo che passa su TikTok, sarebbe già guarito due volte.</li>
+                <li>Ha usato la parola "vabbé" come risposta completa a una conversazione durata 2 ore.</li>
+                <li>Il suo account fake ha più engagement del suo account vero.</li>
+                <li>Ha fatto il "misteryoso" su Discord ma nessuno ha notato la sua assenza. Il log lo conferma.</li>
+                <li>Ha spiegato per 45 minuti perché il rosa che indossava era "salmone, tecnicamente".</li>
+                <li>Ha fotografato i suoi muscoli in 17 angolazioni diverse prima di trovare quella "naturale".</li>
+                <li>Dice di non usare TikTok. Schermata tempo utilizzo: 4h 37min (solo ieri).</li>
+            </ul>
+        </div>
+    </div>
+
+</div><!-- end .container -->
+
+<!-- ===== DISAGIO METER (STICKY) ===== -->
+<div id="disagio-meter">
+    <label style="color:yellow; font-family:Impact; font-size:1.4rem;">⚠️ LIVELLO DI DISAGIO TOTALE ⚠️</label>
+    <div id="progress-container">
+        <div id="progress-bar">0% DISAGIO</div>
+    </div>
+    <div id="final-prize"></div>
+</div>
+
+<!-- ===== KONAMI EASTER EGG ===== -->
+<div id="konami-easter" onclick="this.style.display='none'">
+    <div style="text-align:center; padding:30px; color:white;">
+        <div style="font-size:5rem;">🕹️</div>
+        <div style="font-size:2.5rem; color:#FFD700; font-family:'Impact',sans-serif; margin:10px 0;">KONAMI CODE!</div>
+        <div style="font-size:1.2rem; font-family:'Comic Sans MS',sans-serif; line-height:1.8;">
+            Hai trovato il segreto!<br>
+            La verità nascosta è che Andrea<br>
+            <span style="font-size:2rem; color:#FFD700; animation:blink 0.5s infinite; display:inline-block;">È UN BUON RAGAZZO</span><br>
+            <span style="color:#aaa;">(ma rimane comunque un fenomeno del disagio)</span>
+        </div>
+        <div style="color:#555; margin-top:20px; font-size:0.9rem;">Clicca ovunque per chiudere</div>
+    </div>
+</div>
+
+<!-- ================================================ -->
+<!--                   JAVASCRIPT                      -->
+<!-- ================================================ -->
+<script>
+// ============================================================
+//  TAB SYSTEM
+// ============================================================
+function switchTab(name, btn) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    if (btn) btn.classList.add('active');
+    if (name === 'statistiche') initStatCounters();
+    if (name === 'quiz' && !quizStarted) initQuiz();
+}
+
+// ============================================================
+//  INIT ON LOAD
+// ============================================================
+document.addEventListener('DOMContentLoaded', () => {
+
+    // --- Date / time display ---
+    function updateClock() {
+        const now = new Date();
+        document.getElementById('current-date').textContent =
+            now.toLocaleDateString('it-IT', {day:'2-digit', month:'long', year:'numeric'});
+        document.getElementById('current-time-display').textContent =
+            now.toLocaleTimeString('it-IT');
+    }
+    updateClock();
+    setInterval(updateClock, 1000);
+
+    // --- Fake hit counter ---
+    let hits = 69420 + Math.floor(Math.random() * 999);
+    document.getElementById('hit-counter').textContent = String(hits).padStart(6, '0');
+    setInterval(() => {
+        hits += Math.floor(Math.random() * 3);
+        document.getElementById('hit-counter').textContent = String(hits).padStart(6, '0');
+    }, 4000);
+    document.getElementById('online-count').textContent = Math.floor(Math.random() * 3) + 1;
+
+    // --- Cookie notice ---
+    setTimeout(() => { document.getElementById('cookie-notice').style.display = 'block'; }, 1200);
+
+    // --- Random notifications ---
+    const notifPool = [
+        "🚨 Andrea ha appena messo una nota su Instagram",
+        "📱 L'account fake di Andrea ha likeato questa pagina",
+        "💅 Andrea sta difendendo gli skinny jeans adesso stesso",
+        "🎵 Andrea sta cantando Tha Supreme in camera",
+        "😳 Nuovo avvistamento di disagio in zona",
+        "🔔 Andrea ha guardato le storie senza rispondere",
+        "💬 Andrea ha scritto 'vabbé' come risposta completa",
+        "🕹️ Andrea è appena uscito da Discord per farsi desiderare",
+        "👀 L'account fake ha appena likeato foto del 2014",
+        "🤡 Livelli di cringe in aumento nella tua zona"
+    ];
+    let nIdx = Math.floor(Math.random() * notifPool.length);
+    function showRandomNotif() {
+        showNotifPopup(notifPool[nIdx % notifPool.length]);
+        nIdx++;
+    }
+    setTimeout(() => { showRandomNotif(); setInterval(showRandomNotif, 18000); }, 6000);
+
+    // --- Countdown (always shows time to next 5-min mark) ---
+    function updateCountdown() {
+        const now = new Date();
+        const next = new Date(now);
+        next.setMinutes(Math.ceil((now.getMinutes() + 0.01) / 5) * 5, 0, 0);
+        const diff = Math.max(0, next - now);
+        const d = Math.floor(diff / 86400000);
+        const h = Math.floor((diff % 86400000) / 3600000);
+        const m = Math.floor((diff % 3600000) / 60000);
+        const s = Math.floor((diff % 60000) / 1000);
+        const set = (id, v) => { const el=document.getElementById(id); if(el) el.textContent=String(v).padStart(2,'0'); };
+        set('cd-giorni', d); set('cd-ore', h); set('cd-minuti', m); set('cd-secondi', s);
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // --- Konami code ---
+    const KONAMI = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+    let seq = [];
+    document.addEventListener('keydown', e => {
+        seq.push(e.key); seq = seq.slice(-10);
+        if (JSON.stringify(seq) === JSON.stringify(KONAMI)) {
+            document.getElementById('konami-easter').style.display = 'flex';
+        }
+    });
+
+    // --- Init whack-a-mole highscore ---
+    document.getElementById('highscore').textContent = localStorage.getItem('andreahighscore') || 0;
+
+    // --- Init quiz ---
+    initQuiz();
+
+    // --- Clicker auto-tick ---
+    setInterval(() => {
+        if (clickerDPS > 0) {
+            clickerPoints += clickerDPS / 10;
+            updateClickerUI();
+        }
+    }, 100);
+
+    // --- Playlist fake progress ---
+    setInterval(() => {
+        if (!plPlaying) return;
+        const bar = document.getElementById('player-progress');
+        if (!bar) return;
+        let w = parseFloat(bar.style.width) || 35;
+        w += 0.06; if (w > 100) w = 0;
+        bar.style.width = w + '%';
+        const totalSecs = plTotalSecs;
+        const cur = Math.floor(w / 100 * totalSecs);
+        const el = document.getElementById('pl-current-time');
+        if (el) el.textContent = Math.floor(cur/60) + ':' + String(cur%60).padStart(2,'0');
+    }, 100);
+
+    // --- Disagio meter ---
+    const checkboxes = document.querySelectorAll('.disagio-check');
+    const bar = document.getElementById('progress-bar');
+    const prize = document.getElementById('final-prize');
+    const total = checkboxes.length;
+
+    function updateMeter() {
+        let checked = 0;
+        checkboxes.forEach(b => { if (b.checked) checked++; });
+        let pct = Math.min(100, Math.round(checked / total * 100));
+        bar.style.width = pct + '%';
+        bar.textContent = pct + '% DISAGIO';
+        if (pct < 30) bar.style.background = '#cc0000';
+        else if (pct < 60) bar.style.background = '#ff6600';
+        else if (pct < 90) bar.style.background = '#8B0000';
+        else { bar.style.background = '#ff00ff'; }
+        if (pct >= 99) awardPrize();
+        else prize.style.display = 'none';
+    }
+
+    function awardPrize() {
+        prize.style.display = 'block';
+        const ok = new Date() <= new Date(new Date().getFullYear(), 11, 31, 23, 59, 59);
+        prize.innerHTML = ok
+            ? `🎉 PREMIO SBLOCCATO! 🎉<br><span style="font-size:1rem;">Hai vinto:</span><br><strong>CORSO DI RECUPERO DELLA DIGNITÀ</strong><br><br>
+               <a href="certificato_andrea.pdf" download="Certificato_Dignita_Andrea.pdf" style="text-decoration:none;">
+                 <button style="font-size:1.3rem;cursor:pointer;background:#00FF00;border:5px outset #005500;font-family:Impact;padding:12px 20px;color:black;text-transform:uppercase;animation:blink 2s infinite;">
+                   📥 SCARICA IL CERTIFICATO
+                 </button>
+               </a><br><br><span style="font-size:0.8rem;">(Stampalo e appenditelo in camera)</span>`
+            : `💀 GAME OVER 💀<br>Troppo tardi, Andrea.<br><span style="font-size:0.9rem;">(Riprova l'anno prossimo, sfigato)</span>`;
+    }
+
+    checkboxes.forEach(b => b.addEventListener('change', updateMeter));
+});
+
+// ============================================================
+//  UTILITY
+// ============================================================
+function showNotifPopup(text) {
+    const n = document.createElement('div');
+    n.className = 'notif-popup';
+    n.textContent = text;
+    document.body.appendChild(n);
+    setTimeout(() => n.remove(), 4500);
+}
+
+function rand(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+
+// ============================================================
+//  RATING STARS
+// ============================================================
+function rateDisagio(stars) {
+    for (let i = 1; i <= 5; i++)
+        document.getElementById('star'+i).textContent = i <= stars ? '★' : '☆';
+    const msgs = ['',
+        '1 ⭐ — Sei ottimista. Andrea spezzerà questo sogno presto.',
+        '2 ⭐⭐ — Generoso. Non lo frequenti abbastanza.',
+        '3 ⭐⭐⭐ — Realistico. Stai ancora sottovalutando la situazione.',
+        '4 ⭐⭐⭐⭐ — Ci siamo quasi. Ancora un giorno con lui e arrivi a 5.',
+        '5 ⭐⭐⭐⭐⭐ — ESATTO! Emergenza nazionale confermata. 🚨'
+    ];
+    document.getElementById('rating-result').textContent = msgs[stars];
+}
+
+// ============================================================
+//  OROSCOPO
+// ============================================================
+const OROSCOPI = {
+    Ariete: "♈ ARIETE\n\nLe stelle indicano che Andrea farà qualcosa di imbarazzante entro le ore 10:00. Ha già messo una storia alle 7 con caption 'mornings 🌅' pur svegliandosi di solito a mezzogiorno.\n\n💘 Amore: Guarda le storie senza rispondere.\n💼 Lavoro: Ha dichiarato di 'cercare la sua strada'.\n🍀 Fortuna: ☆☆☆☆☆ | Disagio: ★★★★★",
+    Toro: "♉ TORO\n\nMercurio in retrogrado: Andrea risponderà a messaggi di 3 settimane fa con 'ciao, tutto ok?' come se nulla fosse. Venere è in posizione di cringe assoluto.\n\n💘 Amore: Possibile ghosting improvviso.\n💼 Lavoro: Pianifica molto, esegue poco.\n🍀 Fortuna: ☆☆☆☆☆ | Disagio: ★★★★★",
+    Gemelli: "♊ GEMELLI\n\nI Gemelli sono duplici, come i profili Instagram di Andrea. Oggi userà il fake per spiare chi lo ha bloccato. Doppio cringe in arrivo.\n\n💘 Amore: Segue ancora Lia da 3 account diversi.\n💼 Lavoro: Ha iniziato 5 progetti, finito 0.\n🍀 Fortuna: ★☆☆☆☆ | Disagio: ★★★★☆",
+    Cancro: "♋ CANCRO\n\nIl Cancro è un segno emotivo. Andrea ha mandato 'vabbé' alle 2:47 come risposta a qualcosa che nessuno aveva scritto. Le stelle piangono per lui.\n\n💘 Amore: Risponde con emoji invece di parole.\n💼 Lavoro: Lavorerà... domani.\n🍀 Fortuna: ★★☆☆☆ | Disagio: ★★★★★",
+    Leone: "♌ LEONE\n\nIl Leone ama l'attenzione. Andrea tenterà di fare il figo con gli skinny jeans ma otterrà solo sguardi confusi e un po' di pietà.\n\n💘 Amore: Si è fotografato 18 volte per trovare la foto 'naturale'.\n💼 Lavoro: CEO nella sua testa.\n🍀 Fortuna: ★☆☆☆☆ | Disagio: ★★★★★",
+    Vergine: "♍ VERGINE\n\nLa Vergine è meticolosa. Andrea passerà 45 minuti a scegliere una foto profilo per poi usare quella vecchia di 3 anni. Giornata produttiva: 0%.\n\n💘 Amore: Ha 'quasi' scritto per poi non farlo.\n💼 Lavoro: Ottimizza processi che non esistono.\n🍀 Fortuna: ★★☆☆☆ | Disagio: ★★★★☆",
+    Bilancia: "♎ BILANCIA\n\nLa Bilancia cerca equilibrio. Andrea tenterà di bilanciare 'fare il misterioso' con 'disperato di attenzione'. Come sempre, fallirà clamorosamente.\n\n💘 Amore: Indeciso tra ghost e bombardamento di messaggi.\n💼 Lavoro: Soppesa ogni opzione senza scegliere.\n🍀 Fortuna: ☆☆☆☆☆ | Disagio: ★★★★★",
+    Scorpione: "♏ SCORPIONE\n\nLo Scorpione è intenso. Andrea scriverà un messaggio di 3 paragrafi, lo cancellerà e manderà solo 'ok'. La persona non capirà nulla. Andrà a letto alle 4.\n\n💘 Amore: Complesso e prolisso (internamente).\n💼 Lavoro: Lavora meglio da solo, dice.\n🍀 Fortuna: ★☆☆☆☆ | Disagio: ★★★★★",
+    Sagittario: "♐ SAGITTARIO\n\nIl Sagittario ama la libertà. Andrea uscirà dal server Discord 'per farsi desiderare' e rientrerà dopo 9 secondi. Nessuno aveva notato la sua assenza.\n\n💘 Amore: Libero... solo perché nessuno lo vuole.\n💼 Lavoro: Sempre in movimento, mai in avanti.\n🍀 Fortuna: ★★★☆☆ | Disagio: ★★★★☆",
+    Capricorno: "♑ CAPRICORNO\n\nIl Capricorno è ambizioso. Andrea dichiara che inizierà 'ad andare in palestra seriamente' per la 17° volta. Le stelle non ci credono più.\n\n💘 Amore: Ha un piano per trovare l'amore. Il piano non include azioni.\n💼 Lavoro: Piani a lungo termine, esecuzione a corto respiro.\n🍀 Fortuna: ★★☆☆☆ | Disagio: ★★★★☆",
+    Acquario: "♒ ACQUARIO\n\nL'Acquario è originale. Andrea indossa gli skinny convinto di essere d'avanguardia. Le stelle non sanno più cosa fare e hanno chiesto un trasferimento.\n\n💘 Amore: Troppo unico per essere capito (suoi parole).\n💼 Lavoro: Ribelle al sistema (che non esiste).\n🍀 Fortuna: ☆☆☆☆☆ | Disagio: ★★★★★",
+    Pesci: "♓ PESCI\n\nI Pesci sognano. Andrea sogna la ragazza ma risponde solo con emoji ai messaggi di interesse. Nettuno è in aspetto di disagio profondo.\n\n💘 Amore: Romantico in teoria, fantasma in pratica.\n💼 Lavoro: Aspetta che le opportunità lo trovino.\n🍀 Fortuna: ★☆☆☆☆ | Disagio: ★★★★★"
+};
+
+function showOroscopo(segno) {
+    const div = document.getElementById('oroscopo-result');
+    div.style.display = 'block';
+    div.innerHTML = '';
+    const text = `📅 OROSCOPO OGGI — ${segno.toUpperCase()}\n\n` + OROSCOPI[segno];
+    let i = 0;
+    function type() {
+        if (i < text.length) {
+            const ch = text[i];
+            div.innerHTML += ch === '\n' ? '<br>' : ch;
+            i++;
+            setTimeout(type, ch === '\n' ? 40 : 12);
+        }
+    }
+    type();
+}
+
+const MAGIC8 = [
+    "SÌ, OVVIAMENTE 🤡", "ASSOLUTAMENTE SÌ 😂", "LE STELLE DICONO SÌ",
+    "COME MAI NE DUBITI?", "RISPOSTA: ENORME SÌ", "DOMANDA INUTILE: SÌ",
+    "CI VUOLE ANCORA TEMPO", "CHIEDILO A LUI (NO RISPOSTA)", "TUTTO TRANNE LA VERITÀ",
+    "SOLO DI GIOVEDÌ", "CON QUESTI PRESUPPOSTI SÌ", "HAI GIÀ LA RISPOSTA"
+];
+
+function magic8Ball() {
+    const q = document.getElementById('magic-question').value.trim();
+    if (!q) { showNotifPopup('❌ Scrivi una domanda prima!'); return; }
+    const ball = document.getElementById('magic8-ball');
+    const txt = document.getElementById('magic8-text');
+    ball.style.display = 'flex';
+    txt.textContent = '...';
+    txt.style.fontSize = '1.2rem';
+    setTimeout(() => {
+        txt.textContent = rand(MAGIC8);
+        txt.style.fontSize = '0.65rem';
+    }, 1500);
+}
+
+// ============================================================
+//  QUIZ
+// ============================================================
+const QUESTIONS = [
+    { q: "Qual è il colore preferito di Andrea per i pantaloni?",
+      opts: ["Blu normale","Nero","Skinny (non è un colore ma per lui sì)","Non porta jeans"],
+      correct: 2, exp: "Gli skinny sono la sua religione. Anno 2025." },
+    { q: "Cosa fa Andrea quando viene espulso da un server Discord?",
+      opts: ["Si offende e non rientra","Rientra subito","Crea un nuovo server","Aspetta 10 secondi per 'farsi desiderare'"],
+      correct: 3, exp: "10 secondi esatti. Li ha contati lui stesso." },
+    { q: "Quante volte al giorno Andrea dice 'non sono gay'?",
+      opts: ["Mai (non è gay davvero)","1-2 volte","Solo quando serve","Non smette mai"],
+      correct: 3, exp: "Le statistiche parlano da sole." },
+    { q: "Cosa risponde Andrea se non sente qualcuno per un giorno?",
+      opts: ["Non fa niente","'Tutto ok?'","Guarda le storie senza rispondere","Scrive una nota su IG"],
+      correct: 2, exp: "Il passive-aggressive è la sua prima lingua." },
+    { q: "Qual è il suo artista preferito in assoluto?",
+      opts: ["Vasco Rossi","Tha Supreme","Calcutta","Coez"],
+      correct: 1, exp: "Li sa tutti a memoria. TUTTI. Anche i rarissimi." },
+    { q: "Cosa farebbe Andrea a Valencia se si sentisse solo?",
+      opts: ["Chiamare un amico","Andare a dormire","Sfondarsi di alcol in disco da solo","Visitare musei"],
+      correct: 2, exp: "Dichiarazione testuale. Verificata da testimoni oculari." },
+    { q: "Come chiama Andrea il colore rosa che indossa?",
+      opts: ["Rosa","Salmone","Non lo indossa","Rosso spento"],
+      correct: 1, exp: "SALMONE. Non discuterne. Non tornerai indietro da questa conversazione." },
+    { q: "Quanti account Instagram ha (approssimativamente)?",
+      opts: ["Uno","Due (vero + fake)","Tre o più","Zero (è off social)"],
+      correct: 2, exp: "Principale, fake, finsta. Sistema complesso e ben organizzato." },
+    { q: "Cosa fa Andrea alle 3 di notte?",
+      opts: ["Dorme","Studia","Guarda le storie di tutti","Gioca ai videogiochi"],
+      correct: 2, exp: "Le storie. Sempre. Senza mai commentare o rispondere." },
+    { q: "Qual è la risposta standard di Andrea quando gli chiedi se sta bene?",
+      opts: ["'Sì grazie'","'No, ho bisogno di parlare'","'Vabbé'","'Tutto bene uwu'"],
+      correct: 2, exp: "'Vabbé' — il monosillabo che contiene tutto il disagio del mondo." }
+];
+
+let quizIdx = 0;
+let quizScore = 0;
+let quizStarted = false;
+let quizLocked = false;
+
+function initQuiz() {
+    quizIdx = 0; quizScore = 0; quizStarted = true; quizLocked = false;
+    document.getElementById('quiz-wrapper').style.display = 'block';
+    document.getElementById('quiz-result').style.display = 'none';
+    renderQuestion();
+}
+
+function renderQuestion() {
+    const q = QUESTIONS[quizIdx];
+    document.getElementById('quiz-current').textContent = quizIdx + 1;
+    document.getElementById('quiz-total').textContent = QUESTIONS.length;
+    document.getElementById('quiz-progress-bar').style.width = ((quizIdx + 1) / QUESTIONS.length * 100) + '%';
+    document.getElementById('quiz-question-text').textContent = q.q;
+    document.getElementById('quiz-feedback').textContent = '';
+    const optsDiv = document.getElementById('quiz-options');
+    optsDiv.innerHTML = '';
+    q.opts.forEach((opt, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'quiz-option';
+        btn.textContent = opt;
+        btn.onclick = () => answerQuiz(i, btn);
+        optsDiv.appendChild(btn);
+    });
+}
+
+function answerQuiz(idx, btn) {
+    if (quizLocked) return;
+    quizLocked = true;
+    const q = QUESTIONS[quizIdx];
+    const allBtns = document.querySelectorAll('.quiz-option');
+    allBtns.forEach(b => { b.disabled = true; });
+    if (idx === q.correct) {
+        btn.classList.add('correct');
+        quizScore++;
+        document.getElementById('quiz-feedback').innerHTML = '<span style="color:green;">✅ CORRETTO! ' + q.exp + '</span>';
+    } else {
+        btn.classList.add('wrong');
+        allBtns[q.correct].classList.add('correct');
+        document.getElementById('quiz-feedback').innerHTML = '<span style="color:red;">❌ SBAGLIATO! ' + q.exp + '</span>';
+    }
+    setTimeout(() => {
+        quizIdx++;
+        quizLocked = false;
+        if (quizIdx < QUESTIONS.length) renderQuestion();
+        else finishQuiz();
+    }, 2200);
+}
+
+function finishQuiz() {
+    document.getElementById('quiz-wrapper').style.display = 'none';
+    document.getElementById('quiz-result').style.display = 'block';
+    const s = quizScore;
+    let emoji, color, msg;
+    if (s <= 3) { emoji='🏆'; color='#00aa00'; msg='Non conosci quasi Andrea. Sei una persona sana e fortunata.'; }
+    else if (s <= 6) { emoji='😬'; color='#ff8800'; msg='Lo conosci abbastanza. Hai passato troppo tempo con lui.'; }
+    else if (s <= 8) { emoji='🤦'; color='#cc0000'; msg='Lo conosci bene. Sei contaminato dal disagio in modo preoccupante.'; }
+    else { emoji='💀'; color='#8B0000'; msg='Sei praticamente Andrea. Cerca aiuto professionale. Subito.'; }
+    document.getElementById('quiz-result-content').innerHTML =
+        `<div style="font-size:4rem;">${emoji}</div>
+         <div style="font-size:2.5rem; font-weight:bold; color:${color}; margin:10px 0;">${s} / ${QUESTIONS.length}</div>
+         <div style="font-size:1.15rem;">${msg}</div>`;
+}
+
+function restartQuiz() {
+    quizStarted = false;
+    initQuiz();
+}
+
+// ============================================================
+//  WHACK-A-MOLE GAME
+// ============================================================
+let gameRunning = false;
+let gameScore = 0;
+let gameTimer = 30;
+let gameCombo = 1;
+let comboTimeout;
+let moleTimers = [];
+let gameInterval, timerBarInterval;
+const MOLE_EMOJIS = ['🤡','😬','💅','🕺','😏','🥴','🤓','😤','🙄','😮‍💨'];
+const BONK_EMOJIS = ['💥','⭐','🌟','✨','💢'];
+let gameAchievements = new Set();
+
+function startGame() {
+    if (gameRunning) return;
+    gameRunning = true; gameScore = 0; gameTimer = 30; gameCombo = 1;
+    document.getElementById('score').textContent = 0;
+    document.getElementById('timer').textContent = 30;
+    document.getElementById('combo').textContent = 'x1';
+    document.getElementById('game-message').textContent = 'COLPISCI IL DISAGIATO!';
+    document.getElementById('game-message').style.animation = '';
+    document.getElementById('start-game-btn').disabled = true;
+
+    const startMs = Date.now();
+    timerBarInterval = setInterval(() => {
+        const elapsed = (Date.now() - startMs) / 1000;
+        const rem = Math.max(0, 30 - elapsed);
+        const pct = (rem / 30) * 100;
+        const bar = document.getElementById('game-timer-bar');
+        bar.style.width = pct + '%';
+        bar.style.background = pct > 50 ? '#00ff00' : pct > 25 ? '#ffaa00' : '#ff0000';
+    }, 80);
+
+    gameInterval = setInterval(() => {
+        gameTimer--;
+        document.getElementById('timer').textContent = gameTimer;
+        if (gameTimer <= 0) endGame();
+    }, 1000);
+
+    spawnMole();
+}
+
+function spawnMole() {
+    if (!gameRunning) return;
+    const elapsed = 30 - gameTimer;
+    const visibleTime = Math.max(350, 1100 - elapsed * 22);
+    const hole = Math.floor(Math.random() * 9);
+    const mole = document.getElementById('mole' + hole);
+    mole.textContent = rand(MOLE_EMOJIS);
+    mole.classList.add('up');
+    const hideT = setTimeout(() => mole.classList.remove('up'), visibleTime);
+    moleTimers.push(hideT);
+    const nextT = Math.max(250, 700 - elapsed * 12);
+    const spawnT = setTimeout(spawnMole, nextT);
+    moleTimers.push(spawnT);
+}
+
+function bonkMole(e, idx) {
+    if (!gameRunning) return;
+    const mole = document.getElementById('mole' + idx);
+    if (!mole.classList.contains('up')) return;
+    mole.classList.remove('up');
+    mole.textContent = rand(BONK_EMOJIS);
+    setTimeout(() => { mole.textContent = rand(MOLE_EMOJIS); }, 300);
+
+    clearTimeout(comboTimeout);
+    comboTimeout = setTimeout(() => { gameCombo = 1; document.getElementById('combo').textContent = 'x1'; }, 1800);
+    const pts = 10 * gameCombo;
+    gameScore += pts;
+    if (gameCombo < 10) gameCombo++;
+    document.getElementById('score').textContent = gameScore;
+    document.getElementById('combo').textContent = 'x' + gameCombo;
+
+    floatText(e.clientX, e.clientY, '+' + pts);
+    checkGameAchievements();
+}
+
+function floatText(x, y, txt) {
+    const el = document.createElement('div');
+    el.textContent = txt;
+    el.style.cssText = `position:fixed;left:${x}px;top:${y}px;color:#FFD700;font-size:1.5rem;font-weight:bold;font-family:Impact,sans-serif;pointer-events:none;z-index:9999;transition:all 0.8s ease-out;`;
+    document.body.appendChild(el);
+    requestAnimationFrame(() => {
+        el.style.top = (y - 80) + 'px';
+        el.style.opacity = '0';
+    });
+    setTimeout(() => el.remove(), 850);
+}
+
+function checkGameAchievements() {
+    const ach = document.getElementById('achievement-list');
+    function unlock(id, label) {
+        if (gameAchievements.has(id)) return;
+        gameAchievements.add(id);
+        if (ach.textContent.includes('Nessuno')) ach.textContent = '';
+        const item = document.createElement('div');
+        item.style.cssText = 'color:#FFD700;padding:4px 8px;border:1px solid #FFD700;margin:3px 0;font-size:0.85rem;';
+        item.textContent = '🏅 ' + label;
+        ach.appendChild(item);
+        showNotifPopup('🏅 Achievement: ' + label);
+    }
+    if (gameScore >= 50)   unlock('50',   'Primo Colpo — 50 punti!');
+    if (gameScore >= 200)  unlock('200',  'Dignitario — 200 punti!');
+    if (gameScore >= 500)  unlock('500',  'Esorcista del Disagio — 500 punti!');
+    if (gameScore >= 1000) unlock('1000', '🔥 MILLE PUNTI — Leggenda!');
+    if (gameCombo >= 3)    unlock('c3',   'Combo x3!');
+    if (gameCombo >= 5)    unlock('c5',   'MEGA COMBO x5!');
+    if (gameCombo >= 8)    unlock('c8',   '💥 ULTRA COMBO x8 — Andrea è in ginocchio!');
+}
+
+function endGame() {
+    gameRunning = false;
+    clearInterval(gameInterval); clearInterval(timerBarInterval);
+    moleTimers.forEach(t => clearTimeout(t)); moleTimers = [];
+    clearTimeout(comboTimeout);
+    for (let i = 0; i < 9; i++) document.getElementById('mole' + i).classList.remove('up');
+    document.getElementById('game-timer-bar').style.width = '0%';
+
+    const hs = parseInt(localStorage.getItem('andreahighscore') || 0);
+    let msg;
+    if (gameScore > hs) {
+        localStorage.setItem('andreahighscore', gameScore);
+        document.getElementById('highscore').textContent = gameScore;
+        msg = '🏆 NUOVO RECORD: ' + gameScore + ' PUNTI!';
+        showNotifPopup('🏆 Nuovo record: ' + gameScore + ' punti!');
+    } else {
+        msg = '💀 GAME OVER! Score: ' + gameScore + ' | Record: ' + hs;
+    }
+    document.getElementById('game-message').textContent = msg;
+    document.getElementById('game-message').style.animation = 'blink 1s infinite';
+    const btn = document.getElementById('start-game-btn');
+    btn.disabled = false;
+    btn.textContent = '🔄 RIGIOCA';
+}
+
+// ============================================================
+//  CLICKER GAME
+// ============================================================
+let clickerPoints = 0;
+let clickerDPS = 0;
+const UPGRADES = [
+    { label:'Lamentarsi',           dps:1,    base:10,    count:0 },
+    { label:'Stalkare su IG',       dps:5,    base:50,    count:0 },
+    { label:'Mettere le note',      dps:20,   base:200,   count:0 },
+    { label:'Disco da solo',        dps:100,  base:1000,  count:0 },
+    { label:'Innamorarsi',          dps:500,  base:5000,  count:0 },
+    { label:'Uscire allo scoperto', dps:9999, base:99999, count:0 },
+];
+const MILESTONES = [
+    [100,   '🎉 100 DP! Come Andrea dopo 10 min su TikTok!'],
+    [1000,  '🔥 1,000 DP! Disagio in crescita!'],
+    [10000, '💀 10,000 DP! Sei un fenomeno del disagio!'],
+    [100000,'👑 100,000 DP! Hai superato Andrea stesso!'],
+    [999999,'🌌 MILIONE! Sei diventato il disagio stesso.'],
+];
+let lastMilestone = 0;
+
+function clickAndrea() {
+    clickerPoints += 1 + Math.floor(clickerDPS * 0.1);
+    const btn = document.getElementById('andrea-clicker');
+    btn.style.transform = 'scale(0.82) rotate(-8deg)';
+    setTimeout(() => { btn.style.transform = 'scale(1) rotate(0deg)'; }, 100);
+    createFloatingEmoji(btn);
+    updateClickerUI();
+}
+
+function createFloatingEmoji(el) {
+    const pool = ['💥','😬','🤡','💅','✨','🔥','🌟','⭐'];
+    const p = document.createElement('div');
+    p.textContent = rand(pool);
+    p.style.cssText = 'position:fixed;font-size:2rem;pointer-events:none;z-index:9999;transition:all 0.8s ease-out;';
+    const r = el.getBoundingClientRect();
+    p.style.left = (r.left + r.width/2 + (Math.random()-0.5)*60) + 'px';
+    p.style.top = (r.top + 20) + 'px';
+    document.body.appendChild(p);
+    requestAnimationFrame(() => { p.style.top = (r.top - 80) + 'px'; p.style.opacity = '0'; });
+    setTimeout(() => p.remove(), 850);
+}
+
+function buyUpgrade(idx) {
+    const u = UPGRADES[idx];
+    const cost = Math.floor(u.base * Math.pow(1.5, u.count));
+    if (clickerPoints < cost) { showNotifPopup('❌ Non hai abbastanza DP!'); return; }
+    clickerPoints -= cost;
+    u.count++;
+    clickerDPS += u.dps;
+    updateClickerUI();
+    showNotifPopup('✅ ' + u.label + ' acquistato! +' + u.dps + ' DPS');
+}
+
+function updateClickerUI() {
+    document.getElementById('disagio-points').textContent = Math.floor(clickerPoints).toLocaleString('it-IT');
+    document.getElementById('dps').textContent = clickerDPS.toLocaleString('it-IT');
+    UPGRADES.forEach((u, i) => {
+        const cost = Math.floor(u.base * Math.pow(1.5, u.count));
+        document.getElementById('up-cost-' + i).textContent = cost.toLocaleString('it-IT');
+        document.getElementById('up-btn-' + i).disabled = clickerPoints < cost;
+    });
+    MILESTONES.forEach(([thr, msg]) => {
+        if (clickerPoints >= thr && lastMilestone < thr) {
+            lastMilestone = thr;
+            document.getElementById('clicker-milestone').textContent = msg;
+            showNotifPopup('🎉 ' + msg);
+        }
+    });
+}
+
+// ============================================================
+//  GENERATORE SCUSE
+// ============================================================
+const SCUSE = {
+    rispondere: [
+        "Non ho visto il messaggio — stavo 'meditando' (guardavo TikTok in verticale sul letto)",
+        "Il telefono si è spento da solo. Aveva il 47% di batteria ma vabbé",
+        "Ti avevo già risposto mentalmente. Pensavo bastasse",
+        "Stavo attraversando un momento difficile (era finito il WiFi)",
+        "Ho visto, pensavo di rispondere dopo, poi ho dimenticato che esistevi",
+        "Il messaggio mi aveva dato ansia e non sapevo come gestirla emocionalmente"
+    ],
+    ritardo: [
+        "Il bus era in ritardo (non prende il bus, ha il motorino)",
+        "Stavo finendo una cosa importante (un Reel su Instagram)",
+        "Il tempo scorre diversamente per me, è una questione quantistica",
+        "Stavo per uscire ma poi il capello non veniva bene e ho perso la cognizione del tempo",
+        "C'era traffico (stava sul divano)"
+    ],
+    palestra: [
+        "Oggi non sono al 100%, vado domani con più energia (lo dice dal 3 gennaio)",
+        "Meglio riposare i muscoli: lo dice la scienza (quale scienza?)",
+        "Il PT non c'era e senza non so cosa fare",
+        "Ho fatto 5 flessioni in camera. Conta uguale",
+        "Stavo per andare ma ho iniziato a guardare video di workout su YouTube invece"
+    ],
+    ragazza: [
+        "Non è il momento giusto, sto lavorando su me stesso",
+        "Le ragazze di oggi non capiscono una persona come me",
+        "Sono troppo preso dai miei obiettivi (TikTok e Discord)",
+        "Voglio qualcosa di vero, non le cose superficiali",
+        "Sto ancora finendo di 'guarire' da quella prima (che durava 2 settimane)"
+    ],
+    discord: [
+        "Devo studiare (è rientrato dopo 7 secondi da un altro server)",
+        "Mi sono stancato del gaming (stava su Fortnite)",
+        "Ho cose da fare nella vita reale (era in bagno con il telefono)",
+        "Voglio che sentiate la mia assenza (nessuno l'ha notata)"
+    ],
+    soldi: [
+        "Ho fatto degli investimenti sbagliati (skins su Fortnite + 3 magliette Zara)",
+        "Il mercato è difficile per tutti in questo periodo",
+        "Ho investito in esperienze, non in cose materiali",
+        "Me li ha fregati qualcuno (non specificato chi)"
+    ],
+    gay: [
+        "Apprezzo la bellezza maschile in senso puramente estetico e filosofico",
+        "Sono molto in contatto con la mia sensibilità, non è una cosa gay",
+        "Il rosa è SALMONE e questo è tutto quello che ho da dire",
+        "Ho detto 'bel cazzo' come complimento sportivo, nient'altro"
+    ],
+    random: []
+};
+
+Object.keys(SCUSE).forEach(k => { if (k !== 'random') SCUSE.random.push(...SCUSE[k]); });
+
+function generateScusa(tipo) {
+    const div = document.getElementById('scusa-display');
+    div.style.display = 'block';
+    const label = {rispondere:'non risponde',ritardo:'è in ritardo',palestra:'non va in palestra',
+                   ragazza:'non ha la ragazza',discord:'esce da Discord',soldi:'non ha soldi',
+                   gay:'non è gay',random:'qualsiasi cosa'}[tipo];
+    div.innerHTML = `<b>🤥 Scusa di Andrea — perché <u>${label}</u>:</b><br><br>"${rand(SCUSE[tipo])}"`;
+    div.style.animation = 'shake 0.3s';
+    setTimeout(() => div.style.animation = '', 400);
+}
+
+const MESSAGGI = {
+    likeato: [
+        "Il telefono è strano ultimamente, non so come succedono queste cose",
+        "Stavo scorrendo e il dito è scivolato, colpa delle dita grasse",
+        "In realtà stavo guardando altro, ci siamo capiti dai"
+    ],
+    ghostato: [
+        "Vabbé\n[Visto alle 03:47] [Letto]",
+        "No dai è normale, ognuno ha i suoi ritmi 🌙✨",
+        "Tutto bene, sto solo ricaricando le energie 🔋🌿"
+    ],
+    espulso: [
+        "Vabbé tanto non mi importa\n[rientra dopo 8 secondi]",
+        "Questo server fa schifo comunque non so neanche perché ci stavo",
+        "Ho fatto cose molto peggiori nella vita, literally"
+    ],
+    visto: [
+        "Non l'ho visto, avevo le cuffie (non aveva le cuffie)",
+        "Stavo pensando a qualcosa di importante per il mio futuro",
+        "Vabbé"
+    ],
+    compleanno: [
+        "Non me ne frega niente dei compleanni comunque\n[poi alle 23:50 manda la storia con 'grazie a tutti 🫶']",
+        "L'importante è come mi sento interiormente, non i messaggi degli altri",
+        "Almeno ora so chi mi vuole davvero bene (mia mamma)"
+    ],
+    esame: [
+        "Il professore ce l'ha con me, è una cosa personale",
+        "Non era il mio giorno, capita anche ai migliori",
+        "Comunque è una materia inutile nella vita reale"
+    ],
+    skinny: [
+        "Scusa ma tu che ne sai di moda? Gli skinny stanno tornando, informati",
+        "Non è che sei geloso? Perché non riusciresti a indossarli",
+        "Questi sono SLIM, non skinny. C'è differenza enorme"
+    ]
+};
+
+function generateMessaggio() {
+    const sit = document.getElementById('situazione-select').value;
+    if (!sit) { showNotifPopup('❌ Seleziona una situazione!'); return; }
+    document.getElementById('messaggio-display').style.display = 'block';
+    document.getElementById('messaggio-text').innerHTML = '"' + rand(MESSAGGI[sit]).replace(/\n/g,'<br>') + '"';
+}
+
+// ============================================================
+//  CALCOLATRICE DISAGIO
+// ============================================================
+function calculateDisagio() {
+    const eta     = parseInt(document.getElementById('calc-eta').value) || 0;
+    const bro     = parseInt(document.getElementById('calc-bro').value) || 0;
+    const tiktok  = parseInt(document.getElementById('calc-tiktok').value) || 0;
+    const ex      = parseInt(document.getElementById('calc-ex').value) || 0;
+    const stories = parseInt(document.getElementById('calc-stories').value) || 0;
+    const gay     = parseInt(document.getElementById('calc-gay').value) || 0;
+
+    let s = bro * 5 + tiktok * 8 + ex * 15 + stories * 3 + gay * 7;
+    if (eta < 20) s += 15;
+    if (eta > 25 && tiktok > 3) s += 25;
+    s = Math.min(100, s);
+
+    let liv, msg, col;
+    if (s < 15)      { liv='PERSONA QUASI NORMALE';        msg='Probabilmente non sei Andrea. Congratulazioni.';             col='#00aa00'; }
+    else if (s < 35) { liv='DISAGIO LIEVE';                msg='Mostri i primi sintomi. Cerca aiuto per tempo.';             col='#88aa00'; }
+    else if (s < 55) { liv='DISAGIO MODERATO';             msg='Stai percorrendo la strada sbagliata, amico mio.';           col='#ff8800'; }
+    else if (s < 75) { liv='DISAGIO GRAVE';                msg='Sei praticamente Andrea. Condoglianze a chi ti sta vicino.'; col='#cc4400'; }
+    else             { liv='LIVELLO: ANDREA RISUCCHIO';    msg='Sei il problema. Chiama un professionista. Ora.';            col='#cc0000'; }
+
+    const res = document.getElementById('calc-result');
+    res.style.display = 'block';
+    res.innerHTML = `Livello disagio: <span style="color:${col};font-size:2.2rem;">${s}%</span><br>
+                     Classificazione: <b style="color:${col};">${liv}</b><br><br>${msg}`;
+}
+
+// ============================================================
+//  PLAYLIST
+// ============================================================
+let plPlaying = true;
+let plTotalSecs = 227;
+let plCurrentIdx = 0;
+
+function playTrack(item, duration) {
+    document.querySelectorAll('.playlist-item').forEach((el, i) => {
+        el.classList.remove('now-playing');
+        el.querySelector('.playlist-num').textContent = i + 1;
+    });
+    item.classList.add('now-playing');
+    item.querySelector('.playlist-num').textContent = '♫';
+    plPlaying = true;
+    document.getElementById('play-pause-btn').textContent = '⏸';
+    document.getElementById('player-progress').style.width = '0%';
+    const parts = (duration || '3:00').split(':');
+    plTotalSecs = parseInt(parts[0]) * 60 + parseInt(parts[1]);
+    document.getElementById('pl-total-time').textContent = duration || '3:00';
+    const label = item.querySelector('.playlist-title').textContent;
+    document.getElementById('now-playing-label').textContent = '▶ ' + label;
+}
+
+function togglePlay() {
+    plPlaying = !plPlaying;
+    document.getElementById('play-pause-btn').textContent = plPlaying ? '⏸' : '▶';
+}
+
+function seekTrack(e, bar) {
+    const pct = Math.max(0, Math.min(100, e.offsetX / bar.offsetWidth * 100));
+    document.getElementById('player-progress').style.width = pct + '%';
+}
+
+function nextTrack() {
+    const items = document.querySelectorAll('.playlist-item');
+    let cur = -1;
+    items.forEach((el, i) => { if (el.classList.contains('now-playing')) cur = i; });
+    const next = items[(cur + 1) % items.length];
+    const dur = next.querySelector('.playlist-duration').textContent;
+    playTrack(next, dur);
+}
+
+function prevTrack() {
+    const items = document.querySelectorAll('.playlist-item');
+    let cur = 0;
+    items.forEach((el, i) => { if (el.classList.contains('now-playing')) cur = i; });
+    const prev = items[(cur - 1 + items.length) % items.length];
+    const dur = prev.querySelector('.playlist-duration').textContent;
+    playTrack(prev, dur);
+}
+
+// ============================================================
+//  GUESTBOOK
+// ============================================================
+function addGuestbookEntry() {
+    const name = document.getElementById('gb-name').value.trim();
+    const msg  = document.getElementById('gb-message').value.trim();
+    const rat  = document.getElementById('gb-rating').value;
+    if (!name || !msg) { showNotifPopup('❌ Compila tutti i campi!'); return; }
+    const stars = '⭐'.repeat(parseInt(rat));
+    const now = new Date().toLocaleString('it-IT');
+    const entry = document.createElement('div');
+    entry.className = 'guestbook-entry';
+    entry.innerHTML = `<b>🎭 ${name}</b> <span style="color:#999;font-size:0.8rem;">— ${now}</span><p>"${msg}" ${stars}</p>`;
+    document.getElementById('guestbook-entries').prepend(entry);
+    document.getElementById('gb-name').value = '';
+    document.getElementById('gb-message').value = '';
+    showNotifPopup('📝 Messaggio aggiunto al guestbook!');
+}
+
+// ============================================================
+//  STATISTICHE COUNTER ANIMATION
+// ============================================================
+let statsInited = false;
+function initStatCounters() {
+    if (statsInited) return;
+    statsInited = true;
+    const targets = {
+        'stat-cringe': Math.floor(Math.random()*50+15),
+        'stat-stories': Math.floor(Math.random()*200+80),
+        'stat-skinny': Math.floor(Math.random()*30+8),
+        'stat-bro': Math.floor(Math.random()*600+200),
+        'stat-tha': 127,
+        'stat-gay': Math.floor(Math.random()*25+8)
+    };
+    Object.entries(targets).forEach(([id, target]) => {
+        let cur = 0;
+        const el = document.getElementById(id);
+        if (!el) return;
+        const step = Math.max(1, Math.floor(target / 40));
+        const iv = setInterval(() => {
+            cur = Math.min(cur + step, target);
+            el.textContent = cur.toLocaleString('it-IT');
+            if (cur >= target) clearInterval(iv);
+        }, 35);
+    });
+}
+</script>
 </body>
-
 </html>
